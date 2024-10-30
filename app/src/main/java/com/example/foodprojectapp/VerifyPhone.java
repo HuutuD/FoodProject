@@ -54,11 +54,8 @@ public class VerifyPhone extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String code = entercode.getText().toString().trim();
                 Resend.setVisibility(View.INVISIBLE);
-
                 if (code.isEmpty() && code.length() < 6) {
                     entercode.setError("Enter code");
                     entercode.requestFocus();
