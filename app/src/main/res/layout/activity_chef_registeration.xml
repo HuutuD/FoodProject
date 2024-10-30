@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pic3"
-    tools:context=".ChefRegisteration">
+    tools:context=".ChefFoodPanel.ChefLogin.ChefRegisteration">
 
 
     <ScrollView
@@ -259,7 +259,7 @@
                     android:id="@+id/emaill"
                     android:layout_width="95dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="85dp"
                     android:background="@drawable/btnred"
                     android:drawableLeft="@drawable/whitemail"
                     android:padding="10dp"
@@ -267,24 +267,7 @@
                     android:textColor="@color/white"
                     tools:ignore="TouchTargetSizeCheck" />
 
-                <Button
-                    android:id="@+id/phone"
-                    android:layout_width="97dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/btnblueish"
-                    android:drawableLeft="@drawable/phonewhite"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:text="Phone"
-                    android:textColor="@color/white"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
 

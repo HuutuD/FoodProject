@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.foodprojectapp.R;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefLogin;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefRegisteration;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Login;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Registeration;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.Delivery_Login;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.Delivery_registeration;
 
 public class ChooseOne extends AppCompatActivity {
 
@@ -37,11 +41,7 @@ public class ChooseOne extends AppCompatActivity {
                     startActivity(loginemail);
                     finish();
                 }
-                if (type.equals("Phone")) {
-                    Intent loginphone = new Intent(ChooseOne.this, Chefloginphone.class);
-                    startActivity(loginphone);
-                    finish();
-                }
+
                 if (type.equals("SignUp")) {
                     Intent Register = new Intent(ChooseOne.this, ChefRegisteration.class);
                     startActivity(Register);
@@ -60,11 +60,7 @@ public class ChooseOne extends AppCompatActivity {
                     startActivity(loginemailcust);
                     finish();
                 }
-                if (type.equals("Phone")) {
-                    Intent loginphonecust = new Intent(ChooseOne.this, LoginPhone.class);
-                    startActivity(loginphonecust);
-                    finish();
-                }
+
                 if (type.equals("SignUp")) {
                     Intent Registercust = new Intent(ChooseOne.this, Registeration.class);
                     startActivity(Registercust);
@@ -79,11 +75,7 @@ public class ChooseOne extends AppCompatActivity {
                     Intent Registerdelivery = new Intent(ChooseOne.this, Delivery_registeration.class);
                     startActivity(Registerdelivery);
                 }
-                if (type.equals("Phone")) {
-                    Intent loginphone = new Intent(ChooseOne.this, Delivery_LoginPhone.class);
-                    startActivity(loginphone);
-                    finish();
-                }
+
                 if (type.equals("Email")) {
                     Intent loginemail = new Intent(ChooseOne.this, Delivery_Login.class);
                     startActivity(loginemail);

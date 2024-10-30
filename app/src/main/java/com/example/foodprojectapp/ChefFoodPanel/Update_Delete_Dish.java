@@ -3,14 +3,10 @@ package com.example.foodprojectapp.ChefFoodPanel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,12 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.foodprojectapp.Chef;
-import com.example.foodprojectapp.ChefFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefFoodPanel_BottomNavigation;
 import com.example.foodprojectapp.R;
 
-import com.example.foodprojectapp.Chef;
-import com.example.foodprojectapp.ChefFoodPanel_BottomNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

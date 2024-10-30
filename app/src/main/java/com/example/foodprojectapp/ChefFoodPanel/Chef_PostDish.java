@@ -3,12 +3,7 @@ package com.example.foodprojectapp.ChefFoodPanel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.foodprojectapp.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
 import com.example.foodprojectapp.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -163,7 +158,7 @@ public class Chef_PostDish extends AppCompatActivity {
     private void uploadImage() {
 
         if (imageuri != null) {
-            final ProgressDialog progressDialog = new ProgressDialog(Chef_PostDish.this);
+            final ProgressDialog progressDialog = new   ProgressDialog(Chef_PostDish.this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
             RandomUId = UUID.randomUUID().toString();

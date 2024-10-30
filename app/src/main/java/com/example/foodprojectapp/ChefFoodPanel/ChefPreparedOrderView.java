@@ -17,7 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodprojectapp.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefAdapter.ChefPreparedOrderViewAdapter;
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
 
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.SendNotification.APIService;
@@ -26,10 +27,6 @@ import com.example.foodprojectapp.SendNotification.Data;
 import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.example.foodprojectapp.SendNotification.NotificationSender;
 
-import com.example.foodprojectapp.Chef;
-import com.example.foodprojectapp.SendNotification.Client;
-import com.example.foodprojectapp.SendNotification.Data;
-import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
