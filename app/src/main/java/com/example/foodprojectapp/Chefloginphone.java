@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.example.foodprojectapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.hbb20.CountryCodePicker;
+//import com.hbb20.CountryCodePicker;
 
 public class Chefloginphone extends AppCompatActivity {
 
     EditText num;
     Button sendotp, signinemail;
     TextView txtsignup;
-    CountryCodePicker cpp;
+//    CountryCodePicker cpp;
     FirebaseAuth FAuth;
     String numberr;
 
@@ -29,10 +29,10 @@ public class Chefloginphone extends AppCompatActivity {
 
         num = (EditText) findViewById(R.id.number);
         sendotp = (Button) findViewById(R.id.otp);
-        cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
+//        cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
         signinemail = (Button) findViewById(R.id.btnEmail);
         txtsignup = (TextView) findViewById(R.id.acsignup);
-        cpp.setCountryForPhoneCode(84);
+//        cpp.setCountryForPhoneCode(84);
 
         FAuth = FirebaseAuth.getInstance();
 
@@ -41,9 +41,9 @@ public class Chefloginphone extends AppCompatActivity {
             public void onClick(View v) {
 
                 numberr = num.getText().toString().trim();
-                String phonenumber = cpp.getSelectedCountryCodeWithPlus() + numberr;
+//                String phonenumber = cpp.getSelectedCountryCodeWithPlus() + numberr;
                 Intent b = new Intent(Chefloginphone.this, Chefsendotp.class);
-                b.putExtra("phonenumber", phonenumber);
+//                b.putExtra("phonenumber", phonenumber);
                 startActivity(b);
                 finish();
 

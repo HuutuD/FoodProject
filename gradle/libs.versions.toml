@@ -1,18 +1,39 @@
 [versions]
-agp = "8.6.0"
+agp = "8.6.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-activity = "1.9.2"
+activity = "1.9.3"
 constraintlayout = "2.1.4"
 googleGmsGoogleServices = "4.4.2"
 firebaseAnalytics = "22.1.2"
-firebaseAuth = "23.0.0"
+firebaseAuth = "23.1.0"
 firebaseDatabase = "21.0.0"
 firebaseStorage = "21.0.1"
-firebaseMessaging = "24.0.2"
+firebaseMessaging = "24.0.3"
+#new lib
+vectordrawable = "1.2.0"
+navigationFragment = "2.8.3"
+navigationUi = "2.8.3"
+cardview = "1.0.0"
+recyclerview = "1.3.2"
+browser = "1.8.0"
+legacySupport = "1.0.0"
+lifecycleLivedata = "2.8.6"
+lifecycleViewmodel = "2.8.6"
+multidex = "2.0.1"
+#materialSearchBar = "0.7.1"
+picasso = "2.71828"
+firebaseUiDatabase = "8.0.2"
+glide = "4.16.0"
+cropper = "3.1.0"
+ucrop = "2.2.6"
+playServicesAds = "21.4.0"
+retrofit = "2.11.0"
+converterGson = "2.11.0"
+ccp = "2.7.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -27,6 +48,28 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+#new lib
+vectordrawable = { group = "androidx.vectordrawable", name = "vectordrawable", version.ref = "vectordrawable" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
+cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupport" }
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycleLivedata" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleViewmodel" }
+multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+#materialSearchBar = { group = "com.github.mancj", name = "MaterialSearchBar", version.ref = "materialSearchBar" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+firebase-ui-database = { group = "com.firebaseui", name = "firebase-ui-database", version.ref = "firebaseUiDatabase" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+#cropper = { group = "com.canhub", name = "cropper", version.ref = "cropper" }
+#ucrop = { group = "com.github.yalantis", name = "ucrop", version.ref = "ucrop" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+ccp = { group = "com.hbb20", name = "ccp", version.ref = "ccp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -31,7 +31,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="First Name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Last Name -->
@@ -46,7 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Last Name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Email ID -->
@@ -61,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Phone Number with Country Code -->
@@ -86,7 +89,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile number"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -103,7 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Confirm Password -->
