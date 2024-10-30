@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbackground"
-    tools:context=".Delivery_registeration">
+    tools:context=".DeliveryFoodPanel.DeliveryLogin.Delivery_registeration">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,7 +44,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="FirstName"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +58,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="LastName"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +74,8 @@
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -96,7 +99,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile number"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -112,7 +116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -126,7 +131,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -252,7 +258,7 @@
                     android:id="@+id/emaillid"
                     android:layout_width="95dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="85dp"
                     android:background="@drawable/btnred"
                     android:drawableLeft="@drawable/whitemail"
                     android:padding="10dp"
@@ -260,19 +266,7 @@
                     android:textColor="@color/white"
                     tools:ignore="TouchTargetSizeCheck" />
 
-                <Button
-                    android:id="@+id/Phonenumber"
-                    android:layout_width="97dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/btnblueish"
-                    android:drawableLeft="@drawable/phonewhite"
-                    android:drawablePadding="5dp"
-                    android:padding="10dp"
-                    android:text="Phone"
-                    android:textColor="@color/white"
-                    tools:ignore="TouchTargetSizeCheck" />
+
 
 
             </LinearLayout>

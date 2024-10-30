@@ -5,66 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbackground"
-    tools:context=".Registeration">
+    tools:context=".CustomerFoodPanel.CustomerLogin.Registeration">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/background_shape"
-        android:padding="15dp">
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <!-- First Name -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Fname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:errorEnabled="true"
                 android:layout_marginTop="10dp"
-                app:errorEnabled="true">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.168">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
                     android:hint="First Name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Last Name -->
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Lname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:errorEnabled="true"
                 android:layout_marginTop="10dp"
-                app:errorEnabled="true">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.168">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
                     android:hint="Last Name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email ID -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Emailid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:errorEnabled="true">
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Fname"
+                app:layout_constraintVertical_bias="0.074">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Email id"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Phone Number with Country Code -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,57 +113,72 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/Mobilenumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile number"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
-            <!-- Password -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Emailid"
+                app:layout_constraintVertical_bias="0.12"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:paddingTop="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Confirm Password -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmpass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Password"
+                app:layout_constraintVertical_bias="0.167"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="38dp"
                     android:hint="Confirm password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- State -->
             <TextView
+                android:id="@+id/txt1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="State"
-                android:textSize="14sp" />
+                android:textSize="15dp"
+                tools:ignore="TextSizeCheck" />
 
             <Spinner
                 android:id="@+id/Statee"
@@ -138,13 +188,14 @@
                 android:entries="@array/State"
                 android:minHeight="48dp" />
 
-            <!-- City -->
             <TextView
+                android:id="@+id/txt4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="City"
-                android:textSize="14sp" />
+                android:textSize="15dp"
+                tools:ignore="TextSizeCheck" />
 
             <Spinner
                 android:id="@+id/Citys"
@@ -153,13 +204,14 @@
                 android:layout_marginTop="5dp"
                 android:minHeight="48dp" />
 
-            <!-- Suburban -->
             <TextView
+                android:id="@+id/txt5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Suburban"
-                android:textSize="14sp" />
+                android:textSize="15dp"
+                tools:ignore="TextSizeCheck" />
 
             <Spinner
                 android:id="@+id/Suburban"
@@ -168,7 +220,7 @@
                 android:layout_marginTop="5dp"
                 android:minHeight="48dp" />
 
-            <!-- Register Button -->
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
@@ -177,9 +229,14 @@
                 android:background="@drawable/button_shape"
                 android:text="REGISTER"
                 android:textAllCaps="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirmpass"
+                app:layout_constraintVertical_bias="0.213" />
 
-            <!-- OR separator -->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -188,63 +245,72 @@
                 android:orientation="horizontal">
 
                 <TableRow
+                    android:id="@+id/hr"
                     android:layout_width="103dp"
                     android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
                     android:background="#878787" />
 
                 <TextView
+                    android:id="@+id/OR"
                     android:layout_width="44dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="7dp"
                     android:text="OR"
                     android:textAlignment="center"
                     android:textColor="@color/Black"
                     android:textSize="17dp" />
 
                 <TableRow
+                    android:id="@+id/dr"
                     android:layout_width="103dp"
                     android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
                     android:background="#878787" />
+
             </LinearLayout>
 
-            <!-- Sign-in Options -->
             <TextView
+                android:id="@+id/tvv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="SignIn with"
                 android:textAlignment="center"
                 android:textColor="#FA3E03"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintVertical_bias="0.247" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/emaill"
                     android:layout_width="95dp"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="85dp"
                     android:background="@drawable/btnred"
                     android:drawableLeft="@drawable/whitemail"
                     android:padding="10dp"
                     android:text="Email"
                     android:textColor="@color/white"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-                <Button
-                    android:id="@+id/phone"
-                    android:layout_width="97dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/btnred"
-                    android:drawableLeft="@drawable/phonewhite"
-                    android:padding="10dp"
-                    android:text="Phone"
-                    android:textColor="@color/white"
                     tools:ignore="TouchTargetSizeCheck" />
+
+
+
+
             </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

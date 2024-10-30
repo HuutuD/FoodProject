@@ -10,11 +10,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.Delivery_FoodPanelBottomNavigation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

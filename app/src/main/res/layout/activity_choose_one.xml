@@ -40,36 +40,36 @@
             android:textSize="17dp" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/chef"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="#FA3E03"
+            android:background="#FF0303"
             android:text="Connect as Chef"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/customer"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="#FA3E03"
+            android:background="#0068BD"
             android:text="Connect as Customer"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/delivery"
             android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#FA3E03"
+            android:background="#00940A"
             android:text="Connect as Delivery person"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />

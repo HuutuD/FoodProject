@@ -31,6 +31,7 @@ android {
 
 
     }
+
 }
 
 dependencies {
@@ -47,7 +48,30 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation 'com.hbb20:ccp:2.7.0'
+//    implementation libs.ccp
+
+    // New dependencies from libs.versions.toml
+    implementation libs.vectordrawable
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+    implementation libs.cardview
+    implementation libs.recyclerview
+    implementation libs.browser
+    implementation libs.lifecycle.livedata
+    implementation libs.lifecycle.viewmodel
+    implementation libs.multidex
+//    implementation libs.materialSearchBar
+    implementation libs.picasso
+    implementation libs.firebase.ui.database
+    implementation libs.glide
+    annotationProcessor libs.glide.compiler
+//    implementation libs.cropper
+//    implementation libs.ucrop
+    implementation libs.play.services.ads
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.ccp
+    implementation libs.legacy.support.v4
 
 
 }
