@@ -2,9 +2,12 @@ package com.example.foodprojectapp.ChefFoodPanel.ChefLogin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.foodprojectapp.ChefFoodPanel.ChefFragment.ChefHomeFragment;
@@ -20,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 //import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.Objects;
+
 public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener {
 
     @Override
@@ -28,6 +33,8 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
         setContentView(R.layout.activity_chef_food_panel__bottom_navigation);
         BottomNavigationView navigationView = findViewById(R.id.chef_bottom_navigation);
         navigationView.setOnItemSelectedListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         UpdateToken();
         String name = getIntent().getStringExtra("PAGE");
         if (name != null) {
@@ -51,8 +58,8 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
             if(task.isComplete()){
                 String token = task.getResult();
                 FirebaseDatabase.getInstance().getReference("Tokens")
-                        .child(FirebaseAuth.getInstance()
-                                .getCurrentUser()
+                        .child(Objects.requireNonNull(FirebaseAuth.getInstance()
+                                        .getCurrentUser())
                                 .getUid())
                         .setValue(token);
 
@@ -60,10 +67,7 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
 
             }
         });
-//        String refreshToken = FirebaseInstanceId.getInstance().getToken();
-//        Token token = new Token(refreshToken);
-//        FirebaseDatabase.getInstance().getReference("Tokens").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(token);
-    }
+ }
 
     private boolean loadcheffragment(Fragment fragment) {
         if (fragment != null) {
@@ -91,4 +95,27 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
         return loadcheffragment(fragment);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chef_bottom_navigation, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.chefHome) {
+            startActivity(new Intent(this, ChefHomeFragment.class));
+            return true;
+        } else if (item.getItemId() == R.id.PendingOrders) {
+            startActivity(new Intent(this, ChefPendingOrdersFragment.class));
+            return true;
+        }else if (item.getItemId() == R.id.Orders) {
+            startActivity(new Intent(this, ChefOrderFragment.class));
+            return true;
+        }else if (item.getItemId() == R.id.chefProfile) {
+            startActivity(new Intent(this, ChefProfileFragment.class));
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }
