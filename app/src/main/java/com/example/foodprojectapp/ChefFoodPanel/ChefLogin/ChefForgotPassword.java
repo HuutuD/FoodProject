@@ -29,8 +29,8 @@ public class ChefForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_forgot_password);
 
-        forgetpassword = (TextInputLayout) findViewById(R.id.Emailid);
-        Reset = (Button) findViewById(R.id.button2);
+        forgetpassword = findViewById(R.id.Emailid);
+        Reset = findViewById(R.id.button2);
 
         FAuth = FirebaseAuth.getInstance();
         Reset.setOnClickListener(new View.OnClickListener() {

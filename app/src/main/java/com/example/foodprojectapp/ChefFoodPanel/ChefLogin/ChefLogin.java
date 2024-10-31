@@ -38,11 +38,11 @@ public class ChefLogin extends AppCompatActivity {
         setContentView(R.layout.activity_chef_login);
 
         try {
-            email = (TextInputLayout) findViewById(R.id.Lemail);
-            pass = (TextInputLayout) findViewById(R.id.Lpassword);
-            Signout = (Button) findViewById(R.id.button4);
-            txt = (TextView) findViewById(R.id.textView3);
-            Forgotpassword = (TextView) findViewById(R.id.forgotpass);
+            email = findViewById(R.id.Lemail);
+            pass = findViewById(R.id.Lpassword);
+            Signout = findViewById(R.id.button4);
+            txt = findViewById(R.id.textView3);
+            Forgotpassword = findViewById(R.id.forgotpass);
 
             FAuth = FirebaseAuth.getInstance();
 

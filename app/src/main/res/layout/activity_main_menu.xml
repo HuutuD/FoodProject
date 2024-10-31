@@ -73,8 +73,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:drawableLeft="@drawable/ic_signup1_24dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/button_shape"
-            android:text="Sign Up"
+            android:text="Sign Up with Email"
             android:textColor="@color/white" />
 
     </LinearLayout>

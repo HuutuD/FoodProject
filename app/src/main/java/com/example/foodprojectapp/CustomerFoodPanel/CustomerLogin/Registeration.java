@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Registeration extends AppCompatActivity {
@@ -82,18 +83,18 @@ public class Registeration extends AppCompatActivity {
 
             AlertDialog mDialog = builder.create();
 
-            fname = (TextInputLayout) findViewById(R.id.Fname);
-            lname = (TextInputLayout) findViewById(R.id.Lname);
-            emaill = (TextInputLayout) findViewById(R.id.Emailid);
-            pass = (TextInputLayout) findViewById(R.id.Password);
-            cmpass = (TextInputLayout) findViewById(R.id.confirmpass);
-            Signin = (Button) findViewById(R.id.button);
-            statespin = (Spinner) findViewById(R.id.Statee);
-            City = (Spinner) findViewById(R.id.Citys);
-            Suburban = (Spinner) findViewById(R.id.Suburban);
-            Mobileno = (TextInputLayout) findViewById(R.id.Mobilenumber);
-            Cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
-            Email = (Button) findViewById(R.id.emaill);
+            fname = findViewById(R.id.Fname);
+            lname = findViewById(R.id.Lname);
+            emaill = findViewById(R.id.Emailid);
+            pass = findViewById(R.id.Password);
+            cmpass = findViewById(R.id.confirmpass);
+            Signin = findViewById(R.id.button);
+            statespin = findViewById(R.id.Statee);
+            City = findViewById(R.id.Citys);
+            Suburban = findViewById(R.id.Suburban);
+            Mobileno = findViewById(R.id.Mobilenumber);
+            Cpp = findViewById(R.id.CountryCode);
+            Email = findViewById(R.id.emaill);
             Cpp.setCountryForPhoneCode(84);
 
             // Thiết lập Spinner cho tỉnh
@@ -106,13 +107,9 @@ public class Registeration extends AppCompatActivity {
                     ArrayList<String> districtList = new ArrayList<>();
 
                     if (selectedProvince.equals("Đà Nẵng")) {
-                        for (String district : daNangDistricts) {
-                            districtList.add(district);
-                        }
+                        Collections.addAll(districtList, daNangDistricts);
                     } else if (selectedProvince.equals("Quảng Nam")) {
-                        for (String district : quangNamDistricts) {
-                            districtList.add(district);
-                        }
+                        Collections.addAll(districtList, quangNamDistricts);
                     }
 
                     ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, districtList);
@@ -132,38 +129,22 @@ public class Registeration extends AppCompatActivity {
                     ArrayList<String> suburbList = new ArrayList<>();
 
                     if (selectedDistrict.equals("Sơn Trà")) {
-                        for (String suburb : sonTraSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, sonTraSuburbs);
                     } else if (selectedDistrict.equals("Hải Châu")) {
-                        for (String suburb : haiChauSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, haiChauSuburbs);
                     } else if (selectedDistrict.equals("Hội An")) {
-                        for (String suburb : hoiAnSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, hoiAnSuburbs);
 
                     } else if (selectedDistrict.equals("Liên Chiểu")) {
-                        for (String suburb : lienChieuSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, lienChieuSuburbs);
                     } else if (selectedDistrict.equals("Cẩm Lệ")) {
-                        for (String suburb : camLeSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, camLeSuburbs);
                     } else if (selectedDistrict.equals("Điện Bàn")) {
-                        for (String suburb : dienBanSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, dienBanSuburbs);
                     } else if (selectedDistrict.equals("Hải Châu")) {
-                        for (String suburb : haiChauSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, haiChauSuburbs);
                     } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
-                        for (String suburb : nguHanhSonSuburbs) {
-                            suburbList.add(suburb);
-                        }
+                        Collections.addAll(suburbList, nguHanhSonSuburbs);
                     }
 
                     ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, suburbList);
@@ -237,7 +218,7 @@ public class Registeration extends AppCompatActivity {
                                             hashMappp.put("Password", password);
                                             hashMappp.put("State", statee);
                                             hashMappp.put("Suburban", suburban);
-                                            firebaseDatabase.getInstance().getReference("Customer")
+                                            FirebaseDatabase.getInstance().getReference("Customer")
                                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                     .setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -379,7 +360,7 @@ public class Registeration extends AppCompatActivity {
                 isvalidconfirmpassword = true;
             }
         }
-        isvalid = (isValidfirstname && isValidlastname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno && isValidaddress) ? true : false;
+        isvalid = isValidfirstname && isValidlastname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno && isValidaddress;
         return isvalid;
     }
 }

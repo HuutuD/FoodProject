@@ -48,7 +48,7 @@ public class ChefProfileFragment extends Fragment {
         bgimage.setBackgroundDrawable(animationDrawable);
         animationDrawable.start();
 
-        post = (Button) v.findViewById(R.id.post_dish);
+        post = v.findViewById(R.id.post_dish);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

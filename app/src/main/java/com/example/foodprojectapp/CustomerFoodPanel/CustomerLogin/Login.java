@@ -38,11 +38,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         try {
-            email = (TextInputLayout) findViewById(R.id.Lemail);
-            pass = (TextInputLayout) findViewById(R.id.Lpassword);
-            Signout = (Button) findViewById(R.id.button4);
-            txt = (TextView) findViewById(R.id.textView3);
-            Forgotpassword = (TextView) findViewById(R.id.forgotpass);
+            email = findViewById(R.id.Lemail);
+            pass = findViewById(R.id.Lpassword);
+            Signout = findViewById(R.id.button4);
+            txt = findViewById(R.id.textView3);
+            Forgotpassword = findViewById(R.id.forgotpass);
 
             FAuth = FirebaseAuth.getInstance();
 
@@ -145,7 +145,7 @@ public class Login extends AppCompatActivity {
         } else {
             isvalidpassword = true;
         }
-        isvalid = (isvalidemail && isvalidpassword) ? true : false;
+        isvalid = isvalidemail && isvalidpassword;
         return isvalid;
     }
 }

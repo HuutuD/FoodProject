@@ -18,8 +18,8 @@ import java.util.List;
 
 public class ChefhomeAdapter extends RecyclerView.Adapter<ChefhomeAdapter.ViewHolder> {
 
-    private Context mcont;
-    private List<UpdateDishModel>updateDishModellist;
+    private final Context mcont;
+    private final List<UpdateDishModel>updateDishModellist;
 
     public ChefhomeAdapter(Context context,List<UpdateDishModel>updateDishModellist)
     {

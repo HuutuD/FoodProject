@@ -29,8 +29,8 @@ public class CustomerForgotpassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_forgotpassword);
 
-        emaillid = (TextInputLayout) findViewById(R.id.email);
-        Reset = (Button) findViewById(R.id.reset);
+        emaillid = findViewById(R.id.email);
+        Reset = findViewById(R.id.reset);
 
         Fauth = FirebaseAuth.getInstance();
         Reset.setOnClickListener(new View.OnClickListener() {

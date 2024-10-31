@@ -71,8 +71,8 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-        signinemail = (Button) findViewById(R.id.SignwithEmail);
-        signup = (Button) findViewById(R.id.SignUp);
+        signinemail = findViewById(R.id.SignwithEmail);
+        signup = findViewById(R.id.SignUp);
 
         signinemail.setOnClickListener(new View.OnClickListener() {
             @Override

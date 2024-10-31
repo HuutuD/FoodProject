@@ -69,17 +69,17 @@ public class Update_Delete_Dish extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update__delete__dish);
 
-        desc = (TextInputLayout) findViewById(R.id.description);
-        qty = (TextInputLayout) findViewById(R.id.quantity);
-        pri = (TextInputLayout) findViewById(R.id.price);
-        Dishname = (TextView) findViewById(R.id.dish_name);
-        imageButton = (ImageButton) findViewById(R.id.imageupload);
-        Update_dish = (Button) findViewById(R.id.Updatedish);
-        Delete_dish = (Button) findViewById(R.id.Deletedish);
+        desc = findViewById(R.id.description);
+        qty = findViewById(R.id.quantity);
+        pri = findViewById(R.id.price);
+        Dishname = findViewById(R.id.dish_name);
+        imageButton = findViewById(R.id.imageupload);
+        Update_dish = findViewById(R.id.Updatedish);
+        Delete_dish = findViewById(R.id.Deletedish);
         ID = getIntent().getStringExtra("updatedeletedish");
 
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        dataaa = firebaseDatabase.getInstance().getReference("Chef").child(userid);
+        dataaa = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
         dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,7 +117,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                firebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ID).removeValue();
+                                FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ID).removeValue();
 
                                 AlertDialog.Builder food = new AlertDialog.Builder(Update_Delete_Dish.this);
                                 food.setMessage("Your Dish has been Deleted");
@@ -172,7 +172,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
 
 
                 FAuth = FirebaseAuth.getInstance();
-                databaseReference = firebaseDatabase.getInstance().getReference("FoodSupplyDetails");
+                databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails");
                 storage = FirebaseStorage.getInstance();
                 storageReference = storage.getReference();
                 imageButton.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +221,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
         } else {
             isValidPrice = true;
         }
-        isvalid = (isValiDescription && isvalidQuantity && isValidPrice) ? true : false;
+        isvalid = isValiDescription && isvalidQuantity && isValidPrice;
 
         return isvalid;
     }
@@ -267,7 +267,7 @@ public class Update_Delete_Dish extends AppCompatActivity {
     private void updatedesc(String uri) {
         ChefId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FoodSupplyDetails info = new FoodSupplyDetails(dishes, quantity, price, description, uri, ID, ChefId);
-        firebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub)
+        FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(ID)
                 .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

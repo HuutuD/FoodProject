@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ChefRegisteration extends AppCompatActivity {
@@ -70,18 +71,18 @@ public class ChefRegisteration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_registeration);
 
-        Fname = (TextInputLayout) findViewById(R.id.Firstname);
-        Lname = (TextInputLayout) findViewById(R.id.Lastname);
-        Email = (TextInputLayout) findViewById(R.id.Email);
-        Pass = (TextInputLayout) findViewById(R.id.Pwd);
-        cfpass = (TextInputLayout) findViewById(R.id.Cpass);
-        mobileno = (TextInputLayout) findViewById(R.id.Mobileno);
-        statespin = (Spinner) findViewById(R.id.Statee);
-        Cityspin = (Spinner) findViewById(R.id.Citys);
-        Suburban = (Spinner) findViewById(R.id.Suburban);
-        signup = (Button) findViewById(R.id.Signup);
-        Emaill = (Button) findViewById(R.id.emaill);
-        Cpp = (CountryCodePicker) findViewById(R.id.CountryCode);
+        Fname = findViewById(R.id.Firstname);
+        Lname = findViewById(R.id.Lastname);
+        Email = findViewById(R.id.Email);
+        Pass = findViewById(R.id.Pwd);
+        cfpass = findViewById(R.id.Cpass);
+        mobileno = findViewById(R.id.Mobileno);
+        statespin = findViewById(R.id.Statee);
+        Cityspin = findViewById(R.id.Citys);
+        Suburban = findViewById(R.id.Suburban);
+        signup = findViewById(R.id.Signup);
+        Emaill = findViewById(R.id.emaill);
+        Cpp = findViewById(R.id.CountryCode);
         Cpp.setCountryForPhoneCode(84);
 
         // Thiết lập Spinner cho tỉnh
@@ -94,13 +95,9 @@ public class ChefRegisteration extends AppCompatActivity {
                 ArrayList<String> districtList = new ArrayList<>();
 
                 if (selectedProvince.equals("Đà Nẵng")) {
-                    for (String district : daNangDistricts) {
-                        districtList.add(district);
-                    }
+                    Collections.addAll(districtList, daNangDistricts);
                 } else if (selectedProvince.equals("Quảng Nam")) {
-                    for (String district : quangNamDistricts) {
-                        districtList.add(district);
-                    }
+                    Collections.addAll(districtList, quangNamDistricts);
                 }
 
                 ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(ChefRegisteration.this, android.R.layout.simple_spinner_item, districtList);
@@ -120,38 +117,22 @@ public class ChefRegisteration extends AppCompatActivity {
                 ArrayList<String> suburbList = new ArrayList<>();
 
                 if (selectedDistrict.equals("Sơn Trà")) {
-                    for (String suburb : sonTraSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, sonTraSuburbs);
                 } else if (selectedDistrict.equals("Hải Châu")) {
-                    for (String suburb : haiChauSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, haiChauSuburbs);
                 } else if (selectedDistrict.equals("Hội An")) {
-                    for (String suburb : hoiAnSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, hoiAnSuburbs);
 
                 } else if (selectedDistrict.equals("Liên Chiểu")) {
-                    for (String suburb : lienChieuSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, lienChieuSuburbs);
                 } else if (selectedDistrict.equals("Cẩm Lệ")) {
-                    for (String suburb : camLeSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, camLeSuburbs);
                 } else if (selectedDistrict.equals("Điện Bàn")) {
-                    for (String suburb : dienBanSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, dienBanSuburbs);
                 } else if (selectedDistrict.equals("Hải Châu")) {
-                    for (String suburb : haiChauSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, haiChauSuburbs);
                 } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
-                    for (String suburb : nguHanhSonSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, nguHanhSonSuburbs);
                 }
 
                 ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(ChefRegisteration.this, android.R.layout.simple_spinner_item, suburbList);
@@ -176,7 +157,7 @@ public class ChefRegisteration extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getInstance().getReference("Chef");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Chef");
         FAuth = FirebaseAuth.getInstance();
 
 
@@ -228,7 +209,7 @@ public class ChefRegisteration extends AppCompatActivity {
                                         hashMappp.put("Password", password);
                                         hashMappp.put("State", statee);
                                         hashMappp.put("Suburban", suburban);
-                                        firebaseDatabase.getInstance().getReference("Chef")
+                                        FirebaseDatabase.getInstance().getReference("Chef")
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                 .setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -370,7 +351,7 @@ public class ChefRegisteration extends AppCompatActivity {
         }
 
 
-        isvalid = (isValidname  && isvalidlname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno) ? true : false;
+        isvalid = isValidname && isvalidlname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno;
         return isvalid;
     }
 
