@@ -42,8 +42,8 @@ import retrofit2.Response;
 
 public class ChefPendingOrdersAdapter extends RecyclerView.Adapter<ChefPendingOrdersAdapter.ViewHolder> {
 
-    private Context context;
-    private List<ChefPendingOrders1> chefPendingOrders1list;
+    private final Context context;
+    private final List<ChefPendingOrders1> chefPendingOrders1list;
     private APIService apiService;
     String userid, dishid;
 

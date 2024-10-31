@@ -16,8 +16,8 @@ import java.util.List;
 public class ChefOrderDishesAdapter extends RecyclerView.Adapter<ChefOrderDishesAdapter.ViewHolder> {
 
 
-    private Context mcontext;
-    private List<ChefPendingOrders> chefPendingOrderslist;
+    private final Context mcontext;
+    private final List<ChefPendingOrders> chefPendingOrderslist;
 
     public ChefOrderDishesAdapter(Context context, List<ChefPendingOrders> chefPendingOrderslist) {
         this.chefPendingOrderslist = chefPendingOrderslist;

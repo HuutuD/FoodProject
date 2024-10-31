@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,11 +30,14 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_food_panel__bottom_navigation);
+
         BottomNavigationView navigationView = findViewById(R.id.chef_bottom_navigation);
         navigationView.setOnItemSelectedListener(this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         UpdateToken();
+
         String name = getIntent().getStringExtra("PAGE");
         if (name != null) {
             if (name.equalsIgnoreCase("Orderpage")) {
@@ -62,8 +64,6 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
                                         .getCurrentUser())
                                 .getUid())
                         .setValue(token);
-
-
 
             }
         });
@@ -100,22 +100,5 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
         getMenuInflater().inflate(R.menu.chef_bottom_navigation, menu);
         return true;
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.chefHome) {
-            startActivity(new Intent(this, ChefHomeFragment.class));
-            return true;
-        } else if (item.getItemId() == R.id.PendingOrders) {
-            startActivity(new Intent(this, ChefPendingOrdersFragment.class));
-            return true;
-        }else if (item.getItemId() == R.id.Orders) {
-            startActivity(new Intent(this, ChefOrderFragment.class));
-            return true;
-        }else if (item.getItemId() == R.id.chefProfile) {
-            startActivity(new Intent(this, ChefProfileFragment.class));
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
+    
 }

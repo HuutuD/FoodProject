@@ -26,12 +26,12 @@ public class ChooseOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_one);
-        Chef = (Button) findViewById(R.id.chef);
-        DeliveryPerson = (Button) findViewById(R.id.delivery);
-        Customer = (Button) findViewById(R.id.customer);
+        Chef = findViewById(R.id.chef);
+        DeliveryPerson = findViewById(R.id.delivery);
+        Customer = findViewById(R.id.customer);
 
         intent = getIntent();
-        type = intent.getStringExtra("Home").toString().trim();
+        type = intent.getStringExtra("Home").trim();
 
         Chef.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -48,6 +48,8 @@
             android:layout_marginTop="30dp"
             android:background="#FF0303"
             android:text="Connect as Chef"
+            android:drawableLeft="@drawable/ic_chef_hat_and_fork"
+            android:paddingLeft="10dp"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
@@ -58,6 +60,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="#0068BD"
+            android:drawableLeft="@drawable/ic_person_white_24dp"
+            android:paddingLeft="10dp"
             android:text="Connect as Customer"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
@@ -71,6 +75,8 @@
             android:layout_marginBottom="30dp"
             android:background="#00940A"
             android:text="Connect as Delivery person"
+            android:drawableLeft="@drawable/ic_local_shipping_white_24dp"
+            android:paddingLeft="10dp"
             android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 

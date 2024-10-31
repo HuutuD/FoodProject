@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Delivery_registeration extends AppCompatActivity {
@@ -63,18 +64,18 @@ public class Delivery_registeration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_registeration);
 
-        Fname = (TextInputLayout) findViewById(R.id.fname);
-        Lname = (TextInputLayout) findViewById(R.id.lname);
-        Pass = (TextInputLayout) findViewById(R.id.password);
-        Email = (TextInputLayout) findViewById(R.id.Emailid);
-        cfpass = (TextInputLayout) findViewById(R.id.confirmpassword);
-        mobileno = (TextInputLayout) findViewById(R.id.mobileno);
-        statespin = (Spinner) findViewById(R.id.State);
-        Cityspin = (Spinner) findViewById(R.id.City);
-        Emaill = (Button) findViewById(R.id.emaillid);
-        Suburban = (Spinner) findViewById(R.id.suburban);
-        signup = (Button) findViewById(R.id.Signupp);
-        Cpp = (CountryCodePicker) findViewById(R.id.ctrycode);
+        Fname = findViewById(R.id.fname);
+        Lname = findViewById(R.id.lname);
+        Pass = findViewById(R.id.password);
+        Email = findViewById(R.id.Emailid);
+        cfpass = findViewById(R.id.confirmpassword);
+        mobileno = findViewById(R.id.mobileno);
+        statespin = findViewById(R.id.State);
+        Cityspin = findViewById(R.id.City);
+        Emaill = findViewById(R.id.emaillid);
+        Suburban = findViewById(R.id.suburban);
+        signup = findViewById(R.id.Signupp);
+        Cpp = findViewById(R.id.ctrycode);
         Cpp.setCountryForPhoneCode(84);
         // Tạo AlertDialog với ProgressBar
         AlertDialog.Builder builder = new AlertDialog.Builder(Delivery_registeration.this);
@@ -93,13 +94,9 @@ public class Delivery_registeration extends AppCompatActivity {
                 ArrayList<String> districtList = new ArrayList<>();
 
                 if (selectedProvince.equals("Đà Nẵng")) {
-                    for (String district : daNangDistricts) {
-                        districtList.add(district);
-                    }
+                    Collections.addAll(districtList, daNangDistricts);
                 } else if (selectedProvince.equals("Quảng Nam")) {
-                    for (String district : quangNamDistricts) {
-                        districtList.add(district);
-                    }
+                    Collections.addAll(districtList, quangNamDistricts);
                 }
 
                 ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(Delivery_registeration.this, android.R.layout.simple_spinner_item, districtList);
@@ -119,38 +116,22 @@ public class Delivery_registeration extends AppCompatActivity {
                 ArrayList<String> suburbList = new ArrayList<>();
 
                 if (selectedDistrict.equals("Sơn Trà")) {
-                    for (String suburb : sonTraSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, sonTraSuburbs);
                 } else if (selectedDistrict.equals("Hải Châu")) {
-                    for (String suburb : haiChauSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, haiChauSuburbs);
                 } else if (selectedDistrict.equals("Hội An")) {
-                    for (String suburb : hoiAnSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, hoiAnSuburbs);
 
                 } else if (selectedDistrict.equals("Liên Chiểu")) {
-                    for (String suburb : lienChieuSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, lienChieuSuburbs);
                 } else if (selectedDistrict.equals("Cẩm Lệ")) {
-                    for (String suburb : camLeSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, camLeSuburbs);
                 } else if (selectedDistrict.equals("Điện Bàn")) {
-                    for (String suburb : dienBanSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, dienBanSuburbs);
                 } else if (selectedDistrict.equals("Hải Châu")) {
-                    for (String suburb : haiChauSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, haiChauSuburbs);
                 } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
-                    for (String suburb : nguHanhSonSuburbs) {
-                        suburbList.add(suburb);
-                    }
+                    Collections.addAll(suburbList, nguHanhSonSuburbs);
                 }
 
                 ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(Delivery_registeration.this, android.R.layout.simple_spinner_item, suburbList);
@@ -174,7 +155,7 @@ public class Delivery_registeration extends AppCompatActivity {
 
             }
         });
-        databaseReference = firebaseDatabase.getInstance().getReference("DeliveryPerson");
+        databaseReference = FirebaseDatabase.getInstance().getReference("DeliveryPerson");
             FAuth = FirebaseAuth.getInstance();
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +202,7 @@ public class Delivery_registeration extends AppCompatActivity {
                                         hashMappp.put("Password", password);
                                         hashMappp.put("State", statee);
                                         hashMappp.put("Suburban", suburban);
-                                        firebaseDatabase.getInstance().getReference("DeliveryPerson").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        FirebaseDatabase.getInstance().getReference("DeliveryPerson").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -359,7 +340,7 @@ public class Delivery_registeration extends AppCompatActivity {
         }
 
 
-        isvalid = (isValidname && isValidemail && isvalidlname && isvalidconfirmpassword && isvalidpassword && isvalidmobileno) ? true : false;
+        isvalid = isValidname && isValidemail && isvalidlname && isvalidconfirmpassword && isvalidpassword && isvalidmobileno;
         return isvalid;
     }
 }

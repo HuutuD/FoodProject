@@ -30,8 +30,8 @@ public class Delivery_ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery__forgot_password);
 
-        forgetpassword = (TextInputLayout) findViewById(R.id.forgotEmailid);
-        Reset = (Button) findViewById(R.id.forgotreset);
+        forgetpassword = findViewById(R.id.forgotEmailid);
+        Reset = findViewById(R.id.forgotreset);
 
         FAuth = FirebaseAuth.getInstance();
         Reset.setOnClickListener(new View.OnClickListener() {

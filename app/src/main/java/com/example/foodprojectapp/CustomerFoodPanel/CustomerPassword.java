@@ -41,11 +41,11 @@ public class CustomerPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_password);
 
-        current = (TextInputLayout) findViewById(R.id.current_pwd);
-        neww = (TextInputLayout) findViewById(R.id.new_pwd);
-        confirm = (TextInputLayout) findViewById(R.id.confirm_pwd);
-        change_pwd = (Button) findViewById(R.id.change);
-        forgot = (TextView) findViewById(R.id.forgot_pwd);
+        current = findViewById(R.id.current_pwd);
+        neww = findViewById(R.id.new_pwd);
+        confirm = findViewById(R.id.confirm_pwd);
+        change_pwd = findViewById(R.id.change);
+        forgot = findViewById(R.id.forgot_pwd);
 
 
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -156,7 +156,7 @@ public class CustomerPassword extends AppCompatActivity {
                 isValidconfirmpasswoord = true;
             }
         }
-        isvalid = (isValidnewpassword && isValidconfirmpasswoord) ? true : false;
+        isvalid = isValidnewpassword && isValidconfirmpasswoord;
         return isvalid;
 
     }

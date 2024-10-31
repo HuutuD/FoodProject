@@ -65,17 +65,17 @@ public class Chef_PostDish extends AppCompatActivity {
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        Dishes = (Spinner) findViewById(R.id.dishes);
-        desc = (TextInputLayout) findViewById(R.id.description);
-        qty = (TextInputLayout) findViewById(R.id.quantity);
-        pri = (TextInputLayout) findViewById(R.id.price);
-        post_dish = (Button) findViewById(R.id.post);
+        Dishes = findViewById(R.id.dishes);
+        desc = findViewById(R.id.description);
+        qty = findViewById(R.id.quantity);
+        pri = findViewById(R.id.price);
+        post_dish = findViewById(R.id.post);
         FAuth = FirebaseAuth.getInstance();
-        databaseReference = firebaseDatabase.getInstance().getReference("FoodSupplyDetails");
+        databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails");
 
         try {
             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            dataaa = firebaseDatabase.getInstance().getReference("Chef").child(userid);
+            dataaa = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
             dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,7 +83,7 @@ public class Chef_PostDish extends AppCompatActivity {
                     State = chefc.getState();
                     City = chefc.getCity();
                     Sub = chefc.getSuburban();
-                    imageButton = (ImageButton) findViewById(R.id.imageupload);
+                    imageButton = findViewById(R.id.imageupload);
                     imageButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -150,7 +150,7 @@ public class Chef_PostDish extends AppCompatActivity {
         } else {
             isValidPrice = true;
         }
-        isvalid = (isValiDescription && isvalidQuantity && isValidPrice) ? true : false;
+        isvalid = isValiDescription && isvalidQuantity && isValidPrice;
 
         return isvalid;
     }
@@ -172,7 +172,7 @@ public class Chef_PostDish extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             FoodSupplyDetails info = new FoodSupplyDetails(dishes, quantity, price, description, String.valueOf(uri), RandomUId, ChefId);
-                            firebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId)
+                            FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId)
                                     .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
