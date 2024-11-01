@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefRegisteration;
+
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.ReusableCode.ReusableCodeForAll;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,238 +50,228 @@ public class Registeration extends AppCompatActivity {
     String[] dienBanSuburbs = {"Điện Hồng", "Điện Nam Bắc", "Điện Nam Trung"};
 
 
-    TextInputLayout fname, lname, emaill, pass, cmpass, Mobileno;
-    Spinner statespin, City, Suburban;
-    Button Signin, Email, Phone;
-    FirebaseAuth FAuth;
+    TextInputLayout Fname, Lname, Pass, cfpass, mobileno, Email;
+    Spinner statespin, Cityspin, Suburban;
+    Button signup, Emaill, Phone;
+    CountryCodePicker Cpp;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    String statee;
-    String cityy;
-    String suburban;
-    String email;
-    String password;
-    String firstname;
-    String lastname;
-    String confirmpass;
-    String mobileno;
+    FirebaseAuth FAuth;
     String role = "Customer";
-    CountryCodePicker Cpp;
+    String statee, cityy, suburban, fname, lname, mobile, confirmpassword, password, emailid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
-            // Tạo AlertDialog với ProgressBar
-            AlertDialog.Builder builder = new AlertDialog.Builder(Registeration.this);
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialog_progress, null); // Tạo layout cho dialog progress
-            ProgressBar progressBar = dialogView.findViewById(R.id.progressBar);
-            TextView messageTextView = dialogView.findViewById(R.id.progressMessage);
-            messageTextView.setText("Registering please wait..."); // Thiết lập thông điệp
 
-            builder.setView(dialogView);
-            builder.setCancelable(false);
-
-            AlertDialog mDialog = builder.create();
-
-            fname = findViewById(R.id.Fname);
-            lname = findViewById(R.id.Lname);
-            emaill = findViewById(R.id.Emailid);
-            pass = findViewById(R.id.Password);
-            cmpass = findViewById(R.id.confirmpass);
-            Signin = findViewById(R.id.button);
-            statespin = findViewById(R.id.Statee);
-            City = findViewById(R.id.Citys);
-            Suburban = findViewById(R.id.Suburban);
-            Mobileno = findViewById(R.id.Mobilenumber);
-            Cpp = findViewById(R.id.CountryCode);
-            Email = findViewById(R.id.emaill);
-            Cpp.setCountryForPhoneCode(84);
-
-            // Thiết lập Spinner cho tỉnh
-            ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinces);
-            statespin.setAdapter(stateAdapter);
-            statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedProvince = provinces[position];
-                    ArrayList<String> districtList = new ArrayList<>();
-
-                    if (selectedProvince.equals("Đà Nẵng")) {
-                        Collections.addAll(districtList, daNangDistricts);
-                    } else if (selectedProvince.equals("Quảng Nam")) {
-                        Collections.addAll(districtList, quangNamDistricts);
-                    }
-
-                    ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, districtList);
-                    City.setAdapter(cityAdapter);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                }
-            });
-
-            // Thiết lập Spinner cho quận
-            City.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedDistrict = (String) parent.getItemAtPosition(position);
-                    ArrayList<String> suburbList = new ArrayList<>();
-
-                    if (selectedDistrict.equals("Sơn Trà")) {
-                        Collections.addAll(suburbList, sonTraSuburbs);
-                    } else if (selectedDistrict.equals("Hải Châu")) {
-                        Collections.addAll(suburbList, haiChauSuburbs);
-                    } else if (selectedDistrict.equals("Hội An")) {
-                        Collections.addAll(suburbList, hoiAnSuburbs);
-
-                    } else if (selectedDistrict.equals("Liên Chiểu")) {
-                        Collections.addAll(suburbList, lienChieuSuburbs);
-                    } else if (selectedDistrict.equals("Cẩm Lệ")) {
-                        Collections.addAll(suburbList, camLeSuburbs);
-                    } else if (selectedDistrict.equals("Điện Bàn")) {
-                        Collections.addAll(suburbList, dienBanSuburbs);
-                    } else if (selectedDistrict.equals("Hải Châu")) {
-                        Collections.addAll(suburbList, haiChauSuburbs);
-                    } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
-                        Collections.addAll(suburbList, nguHanhSonSuburbs);
-                    }
-
-                    ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, suburbList);
-                    Suburban.setAdapter(suburbAdapter);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                }
-            });
+        Fname = findViewById(R.id.fname);
+        Lname = findViewById(R.id.lname);
+        Pass = findViewById(R.id.password);
+        Email = findViewById(R.id.Emailid);
+        cfpass = findViewById(R.id.confirmpassword);
+        mobileno = findViewById(R.id.mobileno);
+        statespin = findViewById(R.id.State);
+        Cityspin = findViewById(R.id.City);
+        Emaill = findViewById(R.id.emaillid);
+        Suburban = findViewById(R.id.suburban);
+        signup = findViewById(R.id.Signupp);
+        Cpp = findViewById(R.id.ctrycode);
+        Cpp.setCountryForPhoneCode(84);
+        // Tạo AlertDialog với ProgressBar
+        AlertDialog.Builder builder = new AlertDialog.Builder(Registeration.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_progress, null); // Tạo layout cho dialog progress
+        ProgressBar progressBar = dialogView.findViewById(R.id.progressBar);
 
 
-            Suburban.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Object value = parent.getItemAtPosition(position);
-                    suburban = value.toString().trim();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-
-            // Khởi tạo Firebase
-            databaseReference = FirebaseDatabase.getInstance().getReference("Customer");
-            FAuth = FirebaseAuth.getInstance();
-
-            Signin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    email = emaill.getEditText().getText().toString().trim();
-                    password = pass.getEditText().getText().toString().trim();
-                    firstname = fname.getEditText().getText().toString().trim();
-                    lastname = lname.getEditText().getText().toString().trim();
-                    confirmpass = cmpass.getEditText().getText().toString().trim();
-                    mobileno = Mobileno.getEditText().getText().toString().trim();
-
-                    if (isValid()) {
-
-                        TextView messageTextView = dialogView.findViewById(R.id.progressMessage);
-                        messageTextView.setText("Logging in..."); // Thiết lập thông điệp
-
-                        builder.setView(dialogView);
-                        builder.setCancelable(false);  // Không cho phép hủy khi chạm bên ngoài
-
-                        AlertDialog mDialog = builder.create();
-                        mDialog.show(); // Hiển thị dialog
-
-                        FAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    String useridd = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                    databaseReference = FirebaseDatabase.getInstance().getReference("User").child(useridd);
-                                    final HashMap<String, String> hashMap = new HashMap<>();
-                                    hashMap.put("Role", role);
-                                    databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            HashMap<String, String> hashMappp = new HashMap<>();
-                                            hashMappp.put("City", cityy);
-                                            hashMappp.put("ConfirmPassword", confirmpass);
-                                            hashMappp.put("EmailID", email);
-                                            hashMappp.put("FirstName", firstname);
-                                            hashMappp.put("LastName", lastname);
-                                            hashMappp.put("Mobileno", mobileno);
-                                            hashMappp.put("Password", password);
-                                            hashMappp.put("State", statee);
-                                            hashMappp.put("Suburban", suburban);
-                                            FirebaseDatabase.getInstance().getReference("Customer")
-                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                    .setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
-
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            mDialog.dismiss();
-
-                                                            FAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<Void> task) {
-                                                                    if (task.isSuccessful()) {
-                                                                        AlertDialog.Builder builder = new AlertDialog.Builder(Registeration.this);
-                                                                        builder.setMessage("Registered Successfully,Please Verify your Email");
-                                                                        builder.setCancelable(false);
-                                                                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                                            @Override
-                                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                                Intent loginIntent = new Intent(Registeration.this, Login.class);
-                                                                                startActivity(loginIntent);
-                                                                            }
-                                                                        });
-                                                                        AlertDialog alert = builder.create();
-                                                                        alert.show();
-
-                                                                    } else {
-                                                                        mDialog.dismiss();
-                                                                        ReusableCodeForAll.ShowAlert(Registeration.this, "Error", task.getException().getMessage());
-
-                                                                    }
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                        }
-                                    });
-
-                                } else {
-                                    mDialog.dismiss();
-                                    ReusableCodeForAll.ShowAlert(Registeration.this, "Error", task.getException().getMessage());
-                                }
-                            }
-                        });
-                    }
-
-
-                }
-            });
-
-
-
-        Email.setOnClickListener(new View.OnClickListener() {
+        // Thiết lập Spinner cho tỉnh
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinces);
+        statespin.setAdapter(stateAdapter);
+        statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedProvince = provinces[position];
+                statee = selectedProvince.toString().trim();
+                ArrayList<String> districtList = new ArrayList<>();
 
-                Intent i = new Intent(Registeration.this, Login.class);
-                startActivity(i);
-                finish();
+                if (selectedProvince.equals("Đà Nẵng")) {
+                    Collections.addAll(districtList, daNangDistricts);
+                    districtList.add(selectedProvince);
+                } else if (selectedProvince.equals("Quảng Nam")) {
+                    Collections.addAll(districtList, quangNamDistricts);
+                    districtList.add(selectedProvince);
+                }
+
+                ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, districtList);
+                Cityspin.setAdapter(cityAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
+        // Thiết lập Spinner cho quận
+        Cityspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedDistrict = (String) parent.getItemAtPosition(position);
+                cityy = selectedDistrict.toString().trim();
+                ArrayList<String> suburbList = new ArrayList<>();
 
+                if (selectedDistrict.equals("Sơn Trà")) {
+                    Collections.addAll(suburbList, sonTraSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Hải Châu")) {
+                    Collections.addAll(suburbList, haiChauSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Hội An")) {
+                    Collections.addAll(suburbList, hoiAnSuburbs);
+                    suburbList.add(selectedDistrict);
+
+                } else if (selectedDistrict.equals("Liên Chiểu")) {
+                    Collections.addAll(suburbList, lienChieuSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Cẩm Lệ")) {
+                    Collections.addAll(suburbList, camLeSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Điện Bàn")) {
+                    Collections.addAll(suburbList, dienBanSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Hải Châu")) {
+                    Collections.addAll(suburbList, haiChauSuburbs);
+                    suburbList.add(selectedDistrict);
+                } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
+                    Collections.addAll(suburbList, nguHanhSonSuburbs);
+                    suburbList.add(selectedDistrict);
+                }
+
+                ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(Registeration.this, android.R.layout.simple_spinner_item, suburbList);
+                Suburban.setAdapter(suburbAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        Suburban.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object value = parent.getItemAtPosition(position);
+                suburban = value.toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        databaseReference = FirebaseDatabase.getInstance().getReference("Customer");
+        FAuth = FirebaseAuth.getInstance();
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fname = Fname.getEditText().getText().toString().trim();
+                lname = Lname.getEditText().getText().toString().trim();
+                mobile = mobileno.getEditText().getText().toString().trim();
+                emailid = Email.getEditText().getText().toString().trim();
+                password = Pass.getEditText().getText().toString().trim();
+                confirmpassword = cfpass.getEditText().getText().toString().trim();
+
+
+                if (isValid()) {
+                    TextView messageTextView = dialogView.findViewById(R.id.progressMessage);
+                    messageTextView.setText("Logging in..."); // Thiết lập thông điệp
+
+                    builder.setView(dialogView);
+                    builder.setCancelable(false);  // Không cho phép hủy khi chạm bên ngoài
+
+                    AlertDialog mDialog = builder.create();
+                    mDialog.show(); // Hiển thị dialog
+
+                    FAuth.createUserWithEmailAndPassword(emailid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                databaseReference = FirebaseDatabase.getInstance().getReference("User").child(userid);
+                                final HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("Role", role);
+                                databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        HashMap<String, String> hashMappp = new HashMap<>();
+                                        hashMappp.put("City", cityy);
+                                        hashMappp.put("ConfirmPassword", confirmpassword);
+                                        hashMappp.put("EmailID", emailid);
+                                        hashMappp.put("Fname", fname);
+                                        hashMappp.put("Lname", lname);
+                                        hashMappp.put("Mobile", mobile);
+                                        hashMappp.put("Password", password);
+                                        hashMappp.put("State", statee);
+                                        hashMappp.put("Suburban", suburban);
+                                        FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMappp).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                mDialog.dismiss();
+
+                                                FAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            AlertDialog.Builder builder = new AlertDialog.Builder(Registeration.this);
+                                                            builder.setMessage("Registered Successfully,Please Verify your Email");
+                                                            builder.setCancelable(false);
+                                                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    Intent loginIntent = new Intent(Registeration.this, Login.class);
+                                                                    startActivity(loginIntent);
+                                                                }
+                                                            });
+                                                            AlertDialog alert = builder.create();
+                                                            alert.show();
+
+                                                        } else {
+                                                            mDialog.dismiss();
+                                                            ReusableCodeForAll.ShowAlert(Registeration.this, "Error", task.getException().getMessage());
+
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+
+
+                            } else {
+                                mDialog.dismiss();
+                                ReusableCodeForAll.ShowAlert(Registeration.this, "Error", task.getException().getMessage());
+                            }
+
+                        }
+                    });
+
+
+                }
+            }
+        });
+        Emaill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(Registeration.this, Login.class);
+                startActivity(a);
+                finish();
+            }
+        });
 
 
     }
@@ -287,81 +279,84 @@ public class Registeration extends AppCompatActivity {
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     public boolean isValid() {
-        emaill.setErrorEnabled(false);
-        emaill.setError("");
-        fname.setErrorEnabled(false);
-        fname.setError("");
-        lname.setErrorEnabled(false);
-        lname.setError("");
-        pass.setErrorEnabled(false);
-        pass.setError("");
-        cmpass.setErrorEnabled(false);
-        cmpass.setError("");
-        Mobileno.setErrorEnabled(false);
-        Mobileno.setError("");
+        Fname.setErrorEnabled(false);
+        Fname.setError("");
+        Email.setErrorEnabled(false);
+        Email.setError("");
+        Lname.setErrorEnabled(false);
+        Lname.setError("");
+        Pass.setErrorEnabled(false);
+        Pass.setError("");
+        mobileno.setErrorEnabled(false);
+        mobileno.setError("");
+        cfpass.setErrorEnabled(false);
+        cfpass.setError("");
 
-        boolean isValidfirstname = false, isValidlastname = false, isValidaddress = false, isValidemail = false, isvalidpassword = false, isvalidconfirmpassword = false, isvalid = false, isvalidmobileno = false;
-        if (TextUtils.isEmpty(firstname)) {
-            fname.setErrorEnabled(true);
-            fname.setError("FirstName is required");
+
+        boolean isValidname = false, isvalidpassword = false, isValidemail = false, isvalidconfirmpassword = false, isvalid = false, isvalidmobileno = false, isvalidlname = false;
+        if (TextUtils.isEmpty(fname)) {
+            Fname.setErrorEnabled(true);
+            Fname.setError("Firstname is required");
         } else {
-            isValidfirstname = true;
+            isValidname = true;
         }
-        if (TextUtils.isEmpty(lastname)) {
-            lname.setErrorEnabled(true);
-            lname.setError("LastName is required");
+        if (TextUtils.isEmpty(lname)) {
+            Lname.setErrorEnabled(true);
+            Lname.setError("Lastname is required");
         } else {
-            isValidlastname = true;
+            isvalidlname = true;
         }
-        if (TextUtils.isEmpty(email)) {
-            emaill.setErrorEnabled(true);
-            emaill.setError("Email is required");
+        if (TextUtils.isEmpty(emailid)) {
+            Email.setErrorEnabled(true);
+            Email.setError("Email is required");
         } else {
-            if (email.matches(emailpattern)) {
+            if (emailid.matches(emailpattern)) {
                 isValidemail = true;
             } else {
-                emaill.setErrorEnabled(true);
-                emaill.setError("Enter a valid Email Address");
+                Email.setErrorEnabled(true);
+                Email.setError("Enter a valid Email Address");
             }
 
         }
-        if (TextUtils.isEmpty(mobileno)) {
-            Mobileno.setErrorEnabled(true);
-            Mobileno.setError("Mobile number is required");
-        } else {
-            if (mobileno.length() < 9) {
-                Mobileno.setErrorEnabled(true);
-                Mobileno.setError("Invalid mobile number");
-            } else {
-                isvalidmobileno = true;
-            }
-        }
+
         if (TextUtils.isEmpty(password)) {
-            pass.setErrorEnabled(true);
-            pass.setError("Password is required");
+            Pass.setErrorEnabled(true);
+            Pass.setError("Password is required");
         } else {
             if (password.length() < 6) {
-                pass.setErrorEnabled(true);
-                pass.setError("Password too weak");
-                cmpass.setError("password too weak");
+                Pass.setErrorEnabled(true);
+                Pass.setError("password too weak");
             } else {
                 isvalidpassword = true;
             }
         }
-        if (TextUtils.isEmpty(confirmpass)) {
-            cmpass.setErrorEnabled(true);
-            cmpass.setError("Confirm Password is required");
+        if (TextUtils.isEmpty(confirmpassword)) {
+            cfpass.setErrorEnabled(true);
+            cfpass.setError("Confirm Password is required");
         } else {
-            if (!password.equals(confirmpass)) {
-                pass.setErrorEnabled(true);
-                pass.setError("Password doesn't match");
-                cmpass.setError("Password doesn't match");
+            if (!password.equals(confirmpassword)) {
+                Pass.setErrorEnabled(true);
+                Pass.setError("Password doesn't match");
             } else {
                 isvalidconfirmpassword = true;
             }
         }
-        isvalid = isValidfirstname && isValidlastname && isValidemail && isvalidconfirmpassword && isvalidpassword && isvalidmobileno && isValidaddress;
+        if (TextUtils.isEmpty(mobile)) {
+            mobileno.setErrorEnabled(true);
+            mobileno.setError("Mobile number is required");
+        } else {
+            if (mobile.length() < 9) {
+                mobileno.setErrorEnabled(true);
+                mobileno.setError("Invalid mobile number");
+            } else {
+                isvalidmobileno = true;
+            }
+        }
+
+
+        isvalid = isValidname && isValidemail && isvalidlname && isvalidconfirmpassword && isvalidpassword && isvalidmobileno;
         return isvalid;
     }
 }
+
 

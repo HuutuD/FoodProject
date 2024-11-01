@@ -2,24 +2,25 @@ package com.example.foodprojectapp.ChefFoodPanel.ChefFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodprojectapp.ChefFoodPanel.ChefAdapter.ChefhomeAdapter;
 import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
 import com.example.foodprojectapp.ChefFoodPanel.UpdateDishModel;
 import com.example.foodprojectapp.MainMenu;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodprojectapp.R;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,9 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ChefHomeFragment extends Fragment {
-
 
     RecyclerView recyclerView;
     private List<UpdateDishModel> updateDishModelList;
@@ -40,19 +39,21 @@ public class ChefHomeFragment extends Fragment {
     DatabaseReference dataaa;
     private String State, City, Sub;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_chef_home, null);
         getActivity().setTitle("Food On");
         setHasOptionsMenu(true);
+
         recyclerView = v.findViewById(R.id.Recycle_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         updateDishModelList = new ArrayList<>();
+
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         dataaa = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
+
         dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,13 +70,10 @@ public class ChefHomeFragment extends Fragment {
             }
         });
 
-
         return v;
     }
 
-
     private void chefDishes() {
-
         String useridd = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(useridd);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -96,35 +94,5 @@ public class ChefHomeFragment extends Fragment {
 
             }
         });
-
     }
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.logout, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int idd = item.getItemId();
-        if (idd == R.id.LogOut) {
-            Logout();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void Logout() {
-
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getActivity(), MainMenu.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-        startActivity(intent);
-
-    }
-
-
-
 }
