@@ -1,16 +1,14 @@
 package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,11 +35,11 @@ public class Delivery_Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery__login);
 
-        email = findViewById(R.id.Demail);
-        pass = findViewById(R.id.Dpassword);
-        Signin = findViewById(R.id.Loginbtn);
-        txt = findViewById(R.id.donot);
-        Forgotpassword = findViewById(R.id.Dforgotpass);
+        email = (TextInputLayout) findViewById(R.id.Demail);
+        pass = (TextInputLayout) findViewById(R.id.Dpassword);
+        Signin = (Button) findViewById(R.id.Loginbtn);
+        txt = (TextView) findViewById(R.id.donot);
+        Forgotpassword = (TextView) findViewById(R.id.Dforgotpass);
         FAuth = FirebaseAuth.getInstance();
 
         Signin.setOnClickListener(new View.OnClickListener() {
@@ -50,48 +48,50 @@ public class Delivery_Login extends AppCompatActivity {
                 em = email.getEditText().getText().toString().trim();
                 pwd = pass.getEditText().getText().toString().trim();
                 if (isValid()) {
-                    // Tạo AlertDialog với ProgressBar
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Delivery_Login.this);
-                    LayoutInflater inflater = getLayoutInflater();
-                    View dialogView = inflater.inflate(R.layout.dialog_progress, null); // Tạo layout cho dialog progress
-                    ProgressBar progressBar = dialogView.findViewById(R.id.progressBar);
-                    TextView messageTextView = dialogView.findViewById(R.id.progressMessage);
-                    messageTextView.setText("Logging in..."); // Thiết lập thông điệp
-
-                    builder.setView(dialogView);
-                    builder.setCancelable(false);  // Không cho phép hủy khi chạm bên ngoài
-
-                    AlertDialog mDialog = builder.create();
-                    mDialog.show(); // Hiển thị dialog
-
+                    final ProgressDialog mDialog = new ProgressDialog(Delivery_Login.this);
+                    mDialog.setCanceledOnTouchOutside(false);
+                    mDialog.setCancelable(false);
+                    mDialog.setMessage("Logging in...");
+                    mDialog.show();
                     FAuth.signInWithEmailAndPassword(em, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            mDialog.dismiss(); // Tắt dialog khi hoàn thành
                             if (task.isSuccessful()) {
+
+                                mDialog.dismiss();
                                 if (FAuth.getCurrentUser().isEmailVerified()) {
+                                    mDialog.dismiss();
                                     Toast.makeText(Delivery_Login.this, "You are logged in", Toast.LENGTH_SHORT).show();
                                     Intent z = new Intent(Delivery_Login.this, Delivery_FoodPanelBottomNavigation.class);
                                     startActivity(z);
                                     finish();
+
+
                                 } else {
                                     ReusableCodeForAll.ShowAlert(Delivery_Login.this, "", "Please Verify your Email");
                                 }
+
                             } else {
+
+                                mDialog.dismiss();
                                 ReusableCodeForAll.ShowAlert(Delivery_Login.this, "Error", task.getException().getMessage());
                             }
                         }
                     });
                 }
+
             }
         });
 
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent Register = new Intent(Delivery_Login.this, Delivery_registeration.class);
                 startActivity(Register);
                 finish();
+
             }
         });
 
@@ -101,10 +101,9 @@ public class Delivery_Login extends AppCompatActivity {
                 Intent a = new Intent(Delivery_Login.this, Delivery_ForgotPassword.class);
                 startActivity(a);
                 finish();
+
             }
         });
-
-
     }
 
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -115,7 +114,7 @@ public class Delivery_Login extends AppCompatActivity {
         pass.setErrorEnabled(false);
         pass.setError("");
 
-        boolean isvalidemail = false, isvalidpassword = false;
+        boolean isvalidemail = false, isvalidpassword = false, isvalid = false;
         if (TextUtils.isEmpty(em)) {
             email.setErrorEnabled(true);
             email.setError("Email is required");
@@ -126,6 +125,7 @@ public class Delivery_Login extends AppCompatActivity {
                 email.setErrorEnabled(true);
                 email.setError("Enter a valid Email Address");
             }
+
         }
         if (TextUtils.isEmpty(pwd)) {
             pass.setErrorEnabled(true);
@@ -133,6 +133,7 @@ public class Delivery_Login extends AppCompatActivity {
         } else {
             isvalidpassword = true;
         }
-        return isvalidemail && isvalidpassword;
+        isvalid = (isvalidemail && isvalidpassword) ? true : false;
+        return isvalid;
     }
 }
