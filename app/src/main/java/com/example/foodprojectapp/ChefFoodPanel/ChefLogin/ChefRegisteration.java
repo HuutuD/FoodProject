@@ -92,12 +92,15 @@ public class ChefRegisteration extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedProvince = provinces[position];
+                statee = selectedProvince.toString().trim();
                 ArrayList<String> districtList = new ArrayList<>();
 
                 if (selectedProvince.equals("Đà Nẵng")) {
                     Collections.addAll(districtList, daNangDistricts);
+                    districtList.add(selectedProvince);
                 } else if (selectedProvince.equals("Quảng Nam")) {
                     Collections.addAll(districtList, quangNamDistricts);
+                    districtList.add(selectedProvince);
                 }
 
                 ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(ChefRegisteration.this, android.R.layout.simple_spinner_item, districtList);
@@ -114,25 +117,34 @@ public class ChefRegisteration extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedDistrict = (String) parent.getItemAtPosition(position);
+                cityy = selectedDistrict.toString().trim();
                 ArrayList<String> suburbList = new ArrayList<>();
 
                 if (selectedDistrict.equals("Sơn Trà")) {
                     Collections.addAll(suburbList, sonTraSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Hải Châu")) {
                     Collections.addAll(suburbList, haiChauSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Hội An")) {
                     Collections.addAll(suburbList, hoiAnSuburbs);
+                    suburbList.add(selectedDistrict);
 
                 } else if (selectedDistrict.equals("Liên Chiểu")) {
                     Collections.addAll(suburbList, lienChieuSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Cẩm Lệ")) {
                     Collections.addAll(suburbList, camLeSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Điện Bàn")) {
                     Collections.addAll(suburbList, dienBanSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Hải Châu")) {
                     Collections.addAll(suburbList, haiChauSuburbs);
+                    suburbList.add(selectedDistrict);
                 } else if (selectedDistrict.equals("Ngũ Hành Sơn")) {
                     Collections.addAll(suburbList, nguHanhSonSuburbs);
+                    suburbList.add(selectedDistrict);
                 }
 
                 ArrayAdapter<String> suburbAdapter = new ArrayAdapter<>(ChefRegisteration.this, android.R.layout.simple_spinner_item, suburbList);

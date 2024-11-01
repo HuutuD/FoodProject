@@ -41,6 +41,7 @@ public class ChefhomeAdapter extends RecyclerView.Adapter<ChefhomeAdapter.ViewHo
 
         final UpdateDishModel updateDishModel=updateDishModellist.get(position);
         holder.dishes.setText(updateDishModel.getDishes());
+
         updateDishModel.getRandomUID();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

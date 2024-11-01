@@ -1,13 +1,32 @@
 package com.example.foodprojectapp.ChefFoodPanel;
 
 public class UpdateDishModel {
+    private String Dishes;
+    private String RandomUID;
+    private String Description;
+    private String Quantity;
+    private String Price;
+    private String ImageURL;
+    private String ChefId;
 
-    String Dishes,RandomUID,Description,Quantity,Price,ImageURL,ChefId;
+    public UpdateDishModel() {
+        // Constructor trống cần thiết cho Firebase
+    }
 
+    public String getDishes() {
+        return Dishes;
+    }
 
-    public UpdateDishModel()
-    {
+    public void setDishes(String dishes) {
+        Dishes = dishes;
+    }
 
+    public String getRandomUID() {
+        return RandomUID;
+    }
+
+    public void setRandomUID(String randomUID) {
+        RandomUID = randomUID;
     }
 
     public String getDescription() {
@@ -26,14 +45,6 @@ public class UpdateDishModel {
         Quantity = quantity;
     }
 
-    public String getImageURL() {
-        return ImageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        ImageURL = imageURL;
-    }
-
     public String getPrice() {
         return Price;
     }
@@ -42,24 +53,12 @@ public class UpdateDishModel {
         Price = price;
     }
 
-    public String getRandomUID() {
-
-        return RandomUID;
+    public String getImageURL() {
+        return ImageURL;
     }
 
-    public void setRandomUID(String randomUID) {
-
-        RandomUID = randomUID;
-    }
-
-    public String getDishes()
-    {
-        return Dishes;
-    }
-
-    public void setDishes(String dishes) {
-
-        Dishes = dishes;
+    public void setImageURL(String imageURL) {
+        ImageURL = imageURL;
     }
 
     public String getChefId() {
