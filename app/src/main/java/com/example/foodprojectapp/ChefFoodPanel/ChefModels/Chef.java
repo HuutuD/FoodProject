@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.ChefFoodPanel.ChefLogin;
+package com.example.foodprojectapp.ChefFoodPanel.ChefModels;
 
 public class Chef {
 

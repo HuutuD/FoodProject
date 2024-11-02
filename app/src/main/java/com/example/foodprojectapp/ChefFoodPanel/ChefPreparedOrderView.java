@@ -18,8 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodprojectapp.ChefFoodPanel.ChefAdapter.ChefPreparedOrderViewAdapter;
-import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.Chef;
 
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefFinalOrders;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefFinalOrders1;
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.SendNotification.APIService;
 import com.example.foodprojectapp.SendNotification.Client;

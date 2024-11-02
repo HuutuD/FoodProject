@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodprojectapp.ChefFoodPanel.ChefPendingOrders;
-import com.example.foodprojectapp.ChefFoodPanel.ChefPendingOrders1;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefPendingOrders;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefPendingOrders1;
 import com.example.foodprojectapp.ChefFoodPanel.Chef_order_dishes;
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.ReusableCode.ReusableCodeForAll;

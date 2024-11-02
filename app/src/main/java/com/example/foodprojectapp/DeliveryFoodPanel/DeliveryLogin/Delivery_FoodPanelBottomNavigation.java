@@ -2,22 +2,20 @@ package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.DeliveryPendingOrderFragment;
-import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.DeliveryShipOrderFragment;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryFragment.DeliveryPendingOrderFragment;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryFragment.DeliveryShipOrderFragment;
 import com.example.foodprojectapp.R;
-import com.example.foodprojectapp.SendNotification.Token;
 
-import com.example.foodprojectapp.SendNotification.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -29,7 +27,11 @@ public class Delivery_FoodPanelBottomNavigation extends AppCompatActivity implem
         setContentView(R.layout.activity_delivery__food_panel_bottom_navigation);
         BottomNavigationView navigationView = findViewById(R.id.delivery_bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         UpdateToken();
+
         String name = getIntent().getStringExtra("PAGE");
         if (name != null) {
             if (name.equalsIgnoreCase("DeliveryOrderpage"))
