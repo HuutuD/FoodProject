@@ -10,6 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerCartFragment;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerHomeFragment;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerOrdersFragment;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerProfileFragment;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerTrackFragment;
 import com.example.foodprojectapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -42,27 +47,32 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment = null;
-        if (item.getItemId() == R.id.cust_Home) {
-            fragment = new CustomerHomeFragment();
-        } else if (item.getItemId() == R.id.cart) {
-            fragment = new CustomerCartFragment();
-        } else if (item.getItemId() == R.id.Cust_order) {
-            fragment = new CustomerOrdersFragment();
-        } else if (item.getItemId() == R.id.track) {
-            fragment = new CustomerTrackFragment();
-        } else if (item.getItemId() == R.id.cust_profile) {
-            fragment = new CustomerProfileFragment();
+        Fragment selectedFragment = null;
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (item.getItemId() == R.id.Home) {
+            if (!(currentFragment instanceof CustomerHomeFragment)) {
+                selectedFragment = new CustomerHomeFragment();
+            }
+        } else if (item.getItemId() == R.id.Cart) {
+            if (!(currentFragment instanceof CustomerCartFragment)) {
+                selectedFragment = new CustomerCartFragment();
+            }
+        } else if (item.getItemId() == R.id.Profile) {
+            if (!(currentFragment instanceof CustomerProfileFragment)) {
+                selectedFragment = new CustomerProfileFragment();
+            }
+        } else if (item.getItemId() == R.id.Orders) {
+            if (!(currentFragment instanceof CustomerOrdersFragment)) {
+                selectedFragment = new CustomerOrdersFragment();
+            }
+        } else if (item.getItemId() == R.id.Track) {
+            if (!(currentFragment instanceof CustomerTrackFragment)) {
+                selectedFragment = new CustomerTrackFragment();
+            }
         }
 
-        if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
-            return true;
-        }
-
-        return false;
+        return loadFragment(selectedFragment);
     }
 
     private boolean loadFragment(Fragment fragment) {

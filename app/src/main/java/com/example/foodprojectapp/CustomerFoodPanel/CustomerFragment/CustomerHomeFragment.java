@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,8 +16,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerAdapter.CustomerHomeAdapter;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Customer;
+import com.example.foodprojectapp.CustomerFoodPanel.UpdateDishModel;
 import com.example.foodprojectapp.R;
-import com.example.foodprojectapp.SendNotification.Data;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +37,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
     String State, City, Area;
     DatabaseReference data, databaseReference;
     SwipeRefreshLayout swipeRefreshLayout;
+    SearchView searchView;
 
     @Nullable
     @Override
@@ -86,6 +88,17 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
 
     private void customerMenu() {
         swipeRefreshLayout.setRefreshing(true);
+
+        if (State == null || State.isEmpty()) {
+            State = "DefaultState";
+        }
+        if (City == null || City.isEmpty()) {
+            City = "DefaultCity";
+        }
+        if (Area == null || Area.isEmpty()) {
+            Area = "DefaultArea";
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Area);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,5 +120,30 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return true;
+            }
+        });
+
+    }
+
+    private void search(final String searchtext) {
+        ArrayList<UpdateDishModel> mylist = new ArrayList<>();
+        for (UpdateDishModel object : updateDishModelList) {
+            if (object.getDishes().toLowerCase().contains(searchtext.toLowerCase())) {
+                mylist.add(object);
+            }
+        }
+
+        adapter = new CustomerHomeAdapter(getContext(), mylist);
+        recyclerView.setAdapter(adapter);
     }
 }

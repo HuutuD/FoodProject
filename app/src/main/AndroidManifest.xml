@@ -121,6 +121,9 @@
         <activity
             android:name=".CustomerFoodPanel.CustomerLogin.Registeration"
             android:theme="@style/AppThemeNoActionbar" />
+        <activity
+            android:name=".CustomerFoodPanel.CustomerFoodPanel_BottomNavigation"
+            android:theme="@style/AppThemeNoActionbar"/>
 <!--        <activity-->
 <!--            android:name=".CustomerFoodPanel.CustomerPhoneSendOTP"-->
 <!--            android:theme="@style/AppThemeNoActionbar"-->
