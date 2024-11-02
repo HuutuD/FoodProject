@@ -123,7 +123,13 @@
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".CustomerFoodPanel.CustomerFoodPanel_BottomNavigation"
-            android:theme="@style/AppThemeNoActionbar"/>
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppThemeNoActionbar"
+            android:exported="false"/>
+        <activity
+            android:name=".CustomerFoodPanel.OrderDish"
+            android:label="Order Dish" />
+
 <!--        <activity-->
 <!--            android:name=".CustomerFoodPanel.CustomerPhoneSendOTP"-->
 <!--            android:theme="@style/AppThemeNoActionbar"-->

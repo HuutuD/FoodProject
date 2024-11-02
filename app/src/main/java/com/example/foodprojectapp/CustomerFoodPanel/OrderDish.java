@@ -207,26 +207,22 @@ public class OrderDish extends AppCompatActivity {
                 if (update != null) {
                     String dishName = update.getDishes();
                     int dishPrice = Integer.parseInt(update.getPrice());
-                    int quantity = Integer.parseInt(update.getQuantity());
+                    int quantity = 1;
                     int totalPrice = quantity * dishPrice;
 
-                    if (quantity > 0) {
-                        HashMap<String, String> cartItem = new HashMap<>();
-                        cartItem.put("DishName", dishName);
-                        cartItem.put("DishID", RandomId);
-                        cartItem.put("DishQuantity", String.valueOf(quantity));
-                        cartItem.put("Price", String.valueOf(dishPrice));
-                        cartItem.put("Totalprice", String.valueOf(totalPrice));
-                        cartItem.put("ChefId", ChefID);
+                    HashMap<String, String> cartItem = new HashMap<>();
+                    cartItem.put("DishName", dishName);
+                    cartItem.put("DishID", RandomId);
+                    cartItem.put("DishQuantity", String.valueOf(quantity));
+                    cartItem.put("Price", String.valueOf(dishPrice));
+                    cartItem.put("Totalprice", String.valueOf(totalPrice));
+                    cartItem.put("ChefId", ChefID);
 
-                        DatabaseReference userCartRef = FirebaseDatabase.getInstance().getReference("Cart")
-                                .child("CartItems").child(userId).child(RandomId);
-                        userCartRef.setValue(cartItem).addOnSuccessListener(aVoid ->
-                                Toast.makeText(OrderDish.this, "Added to cart", Toast.LENGTH_SHORT).show()
-                        );
-                    } else {
-                        removeDishFromCart(userId);
-                    }
+                    DatabaseReference userCartRef = FirebaseDatabase.getInstance().getReference("Cart")
+                            .child("CartItems").child(userId).child(RandomId);
+                    userCartRef.setValue(cartItem).addOnSuccessListener(aVoid ->
+                            Toast.makeText(OrderDish.this, "Added to cart", Toast.LENGTH_SHORT).show()
+                    );
                 }
             }
 

@@ -83,8 +83,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="+" />
+
+                            <Button
+                                android:id="@+id/btn_add_to_cart"
+                                android:layout_width="377dp"
+                                android:layout_height="27dp"
+                                android:layout_margin="16dp"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:text="Add to Cart"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
                         </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -170,13 +181,4 @@
         </LinearLayout>
 
     </ScrollView>
-    <Button
-        android:id="@+id/btn_add_to_cart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add to Cart"
-        android:layout_margin="16dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/colorPrimary" />
 </LinearLayout>

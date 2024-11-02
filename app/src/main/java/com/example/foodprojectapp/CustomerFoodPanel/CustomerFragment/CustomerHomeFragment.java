@@ -120,19 +120,18 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                search(newText);
-                return true;
-            }
-        });
-
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                search(newText);
+//                return true;
+//            }
+//        });
     }
 
     private void search(final String searchtext) {
