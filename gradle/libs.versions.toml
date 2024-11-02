@@ -64,8 +64,8 @@ picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "pic
 firebase-ui-database = { group = "com.firebaseui", name = "firebase-ui-database", version.ref = "firebaseUiDatabase" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
-#cropper = { group = "com.canhub", name = "cropper", version.ref = "cropper" }
-#ucrop = { group = "com.github.yalantis", name = "ucrop", version.ref = "ucrop" }
+cropper = { group = "com.canhub", name = "cropper", version.ref = "cropper" }
+ucrop = { group = "com.github.yalantis", name = "ucrop", version.ref = "ucrop" }
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }

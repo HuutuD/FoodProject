@@ -18,12 +18,13 @@
             android:id="@+id/ad1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/Black"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
             android:inputType="textMultiLine"
             android:maxWidth="300dp"
+            android:minHeight="48dp"
             android:text="Address"
+            android:textColor="@color/Black"
             android:textSize="25dp" />
 
         <TextView

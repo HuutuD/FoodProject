@@ -67,12 +67,12 @@
             android:name=".ChefFoodPanel.ChefPreparedOrder"
             android:label="Prepared Orders"
             android:theme="@style/AppThemeNoActionbar" />
-        <!-- <activity -->
-        <!-- android:name=".ChefFoodPanel.ChefOrdertobePrepareView" -->
-        <!-- android:label="Orders to be Prepared" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ChefFoodPanel.ChefOrderTobePrepared" -->
-        <!-- android:label="Orders to be Prepared" /> -->
+         <activity
+         android:name=".ChefFoodPanel.ChefOrdertobePrepareView"
+         android:label="Orders to be Prepared" />
+         <activity
+         android:name=".ChefFoodPanel.ChefOrderTobePrepared"
+         android:label="Orders to be Prepared" />
         <activity
             android:name=".ChefFoodPanel.Chef_order_dishes"
             android:label="Orders"
@@ -89,9 +89,10 @@
             android:name=".ChefFoodPanel.ChefLogin.ChefFoodPanel_BottomNavigation"
             android:exported="false"
             android:theme="@style/AppThemeNoActionbar"
-            android:windowSoftInputMode="adjustNothing" /> <!-- <activity -->
-        <!-- android:name=".ChefVerifyPhone" -->
-        <!-- android:theme="@style/AppThemeNoActionbar" /> -->
+            android:windowSoftInputMode="adjustNothing" />
+
+
+
         <!-- Chef -->
         <!-- ======================================================= -->
         <!-- ======================================================= -->
