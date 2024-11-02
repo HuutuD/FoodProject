@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    tools:context=".ChefFoodPanel.ChefOrderTobePrepared"-->
-
+    android:layout_height="match_parent"
+    tools:context=".ChefFoodPanel.ChefOrderTobePrepared">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/Swipe1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recycle_orderstobeprepared"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_marginTop="60dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recycle_orderstobeprepared"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

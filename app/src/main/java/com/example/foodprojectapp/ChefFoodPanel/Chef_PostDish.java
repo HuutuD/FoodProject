@@ -4,15 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.FoodSupplyDetails;
 import com.example.foodprojectapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,96 +30,115 @@ import java.util.UUID;
 
 public class Chef_PostDish extends AppCompatActivity {
 
-    ImageButton imageButton;
     Button post_dish;
     Spinner Dishes;
     TextInputLayout desc, qty, pri;
     String description, quantity, price, dishes;
-    Uri imageuri; // Không cần thiết nếu không sử dụng hình ảnh
+    FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference dataaa;
     FirebaseAuth FAuth;
     String ChefId;
     String RandomUId;
+    String State, City, Sub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef__post_dish);
 
-        Dishes = findViewById(R.id.dishes);
-        desc = findViewById(R.id.description);
-        qty = findViewById(R.id.quantity);
-        pri = findViewById(R.id.price);
-        post_dish = findViewById(R.id.post);
+        Dishes = (Spinner) findViewById(R.id.dishes);
+        desc = (TextInputLayout) findViewById(R.id.description);
+        qty = (TextInputLayout) findViewById(R.id.quantity);
+        pri = (TextInputLayout) findViewById(R.id.price);
+        post_dish = (Button) findViewById(R.id.post);
         FAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails");
+        databaseReference = firebaseDatabase.getInstance().getReference("FoodSupplyDetails");
 
-        // Kiểm tra xem người dùng đã đăng nhập hay chưa
-        if (FAuth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please log in to post a dish", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        try {
+            String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            dataaa = firebaseDatabase.getInstance().getReference("Chef").child(userid);
+            dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Chef chefc = dataSnapshot.getValue(Chef.class);
+                    State = chefc.getState();
+                    City = chefc.getCity();
+                    Sub = chefc.getSuburban();
 
-        String userid = FAuth.getCurrentUser().getUid();
-        DatabaseReference chefRef = FirebaseDatabase.getInstance().getReference("Chef").child(userid);
-        chefRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    ChefId = dataSnapshot.child("ChefId").getValue(String.class);
-                } else {
-                    Toast.makeText(Chef_PostDish.this, "Chef data not found", Toast.LENGTH_SHORT).show();
+                    post_dish.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dishes = Dishes.getSelectedItem().toString().trim();
+                            description = desc.getEditText().getText().toString().trim();
+                            quantity = qty.getEditText().getText().toString().trim();
+                            price = pri.getEditText().getText().toString().trim();
+
+                            if (isValid()) {
+                                postDish();
+                            }
+                        }
+                    });
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Chef_PostDish.this, "Database error", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle error
+                }
+            });
 
-        imageButton = findViewById(R.id.imageupload);
-        imageButton.setVisibility(View.GONE); // Ẩn nút tải lên hình ảnh nếu không cần
-
-        post_dish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PostDish();
-            }
-        });
+        } catch (Exception e) {
+            Log.e("Error: ", e.getMessage());
+        }
     }
 
-    private void PostDish() {
-        description = desc.getEditText().getText().toString();
-        quantity = qty.getEditText().getText().toString();
-        price = pri.getEditText().getText().toString();
-        dishes = Dishes.getSelectedItem().toString();
+    private boolean isValid() {
+        desc.setErrorEnabled(false);
+        desc.setError("");
+        qty.setErrorEnabled(false);
+        qty.setError("");
+        pri.setErrorEnabled(false);
+        pri.setError("");
 
-        if (TextUtils.isEmpty(description) || TextUtils.isEmpty(quantity) || TextUtils.isEmpty(price)) {
-            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
-            return;
+        boolean isValidDescription = false, isValidPrice = false, isValidQuantity = false, isValid = false;
+        if (TextUtils.isEmpty(description)) {
+            desc.setErrorEnabled(true);
+            desc.setError("Description is Required");
+        } else {
+            desc.setError(null);
+            isValidDescription = true;
         }
+        if (TextUtils.isEmpty(quantity)) {
+            qty.setErrorEnabled(true);
+            qty.setError("Quantity is Required");
+        } else {
+            isValidQuantity = true;
+        }
+        if (TextUtils.isEmpty(price)) {
+            pri.setErrorEnabled(true);
+            pri.setError("Price is Required");
+        } else {
+            isValidPrice = true;
+        }
+        isValid = isValidDescription && isValidQuantity && isValidPrice;
 
+        return isValid;
+    }
+
+    private void postDish() {
         RandomUId = UUID.randomUUID().toString();
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Posting Dish...");
-        progressDialog.show();
+        ChefId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // Lưu dữ liệu vào Realtime Database
-        HashMap<String, Object> dishData = new HashMap<>();
-        dishData.put("DishId", RandomUId);
-        dishData.put("ChefId", ChefId);
-        dishData.put("Description", description);
-        dishData.put("Quantity", quantity);
-        dishData.put("Price", price);
-        dishData.put("DishName", dishes);
-            dishData.put("ImageUrl", "static_image_url_here"); // Thay bằng URL hình ảnh tĩnh nếu có
+        FoodSupplyDetails info = new FoodSupplyDetails(dishes, quantity, price, description, RandomUId, ChefId);
 
-        databaseReference.child(RandomUId).setValue(dishData)
+        // Lưu dữ liệu theo địa chỉ của bếp trưởng
+        firebaseDatabase.getInstance().getReference("FoodSupplyDetails")
+                .child(State).child(City).child(Sub)
+                .child(ChefId).child(RandomUId)
+                .setValue(info)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(Chef_PostDish.this, "Dish posted successfully", Toast.LENGTH_SHORT).show();
                         } else {
