@@ -4,7 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.Delivery_FoodPanelBottomNavigation">
+    tools:context=".DeliveryFoodPanel.DeliveryLogin.Delivery_FoodPanelBottomNavigation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -18,7 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        android:backgroundTint="@color/white"
         app:itemIconTint="@color/bottomcolour"
         app:itemTextColor="@color/bottomcolour"
         app:menu="@menu/delivery_bottom_navigation"/>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeliveryFoodPanel.DeliveryLogin.DeliveryPendingOrderFragment">
+    tools:context=".DeliveryFoodPanel.DeliveryFragment.DeliveryPendingOrderFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/linear1"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:layout_marginTop="60dp"/>
 
 
     <LinearLayout

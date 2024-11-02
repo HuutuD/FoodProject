@@ -17,8 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.Chef;
 import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.FoodSupplyDetails;
 import com.example.foodprojectapp.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;

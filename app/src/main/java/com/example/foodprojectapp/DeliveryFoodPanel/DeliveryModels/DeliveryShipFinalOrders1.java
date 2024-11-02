@@ -1,19 +1,21 @@
-package com.example.foodprojectapp.ChefFoodPanel;
+package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels;
 
-public class ChefPendingOrders1 {
+public class DeliveryShipFinalOrders1 {
 
-    private String Address,GrandTotalPrice,MobileNumber,Name,Note,RandomUID;
+    private String Address,ChefId,ChefName,GrandTotalPrice,MobileNumber,Name,RandomUID,UserId;
 
-    public ChefPendingOrders1(String address, String grandTotalPrice, String mobileNumber, String name, String note, String randomUID) {
+    public DeliveryShipFinalOrders1(String address, String chefId, String chefName, String grandTotalPrice, String mobileNumber, String name, String randomUID, String userId) {
         Address = address;
+        ChefId = chefId;
+        ChefName = chefName;
         GrandTotalPrice = grandTotalPrice;
         MobileNumber = mobileNumber;
         Name = name;
-        Note = note;
         RandomUID = randomUID;
+        UserId = userId;
     }
 
-    public ChefPendingOrders1()
+    public DeliveryShipFinalOrders1()
     {
 
     }
@@ -24,6 +26,22 @@ public class ChefPendingOrders1 {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public String getChefId() {
+        return ChefId;
+    }
+
+    public void setChefId(String chefId) {
+        ChefId = chefId;
+    }
+
+    public String getChefName() {
+        return ChefName;
+    }
+
+    public void setChefName(String chefName) {
+        ChefName = chefName;
     }
 
     public String getGrandTotalPrice() {
@@ -50,14 +68,6 @@ public class ChefPendingOrders1 {
         Name = name;
     }
 
-    public String getNote() {
-        return Note;
-    }
-
-    public void setNote(String note) {
-        Note = note;
-    }
-
     public String getRandomUID() {
         return RandomUID;
     }
@@ -65,5 +75,12 @@ public class ChefPendingOrders1 {
     public void setRandomUID(String randomUID) {
         RandomUID = randomUID;
     }
-}
 
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
+}

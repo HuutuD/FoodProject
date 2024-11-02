@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
+package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipOrders;
 import com.example.foodprojectapp.R;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
+package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryAdapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryPendingOrderView;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipOrders;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipOrders1;
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.ReusableCode.ReusableCodeForAll;
 import com.example.foodprojectapp.SendNotification.APIService;
@@ -20,9 +23,6 @@ import com.example.foodprojectapp.SendNotification.Data;
 import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.example.foodprojectapp.SendNotification.NotificationSender;
 
-import com.example.foodprojectapp.SendNotification.Client;
-import com.example.foodprojectapp.SendNotification.Data;
-import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

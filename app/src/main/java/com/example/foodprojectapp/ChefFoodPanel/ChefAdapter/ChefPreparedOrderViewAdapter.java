@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodprojectapp.ChefFoodPanel.ChefFinalOrders;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefFinalOrders;
 import com.example.foodprojectapp.R;
 import java.util.List;
 

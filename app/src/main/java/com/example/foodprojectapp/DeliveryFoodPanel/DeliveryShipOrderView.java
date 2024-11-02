@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
+package com.example.foodprojectapp.DeliveryFoodPanel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryAdapter.DeliveryShipOrderViewAdapter;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipFinalOrders;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipFinalOrders1;
 import com.example.foodprojectapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

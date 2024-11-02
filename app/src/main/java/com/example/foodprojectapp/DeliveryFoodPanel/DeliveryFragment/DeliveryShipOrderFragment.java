@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin;
+package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipFinalOrders1;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryAdapter.DeliveryShipOrderFragmentAdapter;
 import com.example.foodprojectapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
