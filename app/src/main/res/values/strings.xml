@@ -15,10 +15,15 @@
     </string-array>
 
     <string-array name="DishName">
-        <item>Salad</item>
-        <item>Chicken</item>
-        <item>Pig</item>
-        <item>Duck</item>
-
+        <item>Muối Xào Xả Ớt</item>
+        <item>Phở Bò</item>
+        <item>Cơm Tấm</item>
+        <item>Bún Bò Huế</item>
+        <item>Canh Chua</item>
+        <item>Lẩu Thái</item>
+        <item>Thịt Kho Tàu</item>
+        <item>Gà Nướng Muối Ớt</item>
+        <item>Bò Kho</item>
     </string-array>
+
 </resources>
