@@ -66,8 +66,8 @@ public class DeliveryPendingOrderFragmentAdapter extends RecyclerView.Adapter<De
 
         final DeliveryShipOrders1 deliveryShipOrders1 = deliveryShipOrders1list.get(position);
         holder.Address.setText(deliveryShipOrders1.getAddress());
-        holder.mobilenumber.setText("+91" + deliveryShipOrders1.getMobileNumber());
-        holder.grandtotalprice.setText("Grand Total: ₹ " + deliveryShipOrders1.getGrandTotalPrice());
+        holder.mobilenumber.setText("+84" + deliveryShipOrders1.getMobileNumber());
+        holder.grandtotalprice.setText("Grand Total: VND " + deliveryShipOrders1.getGrandTotalPrice());
         final String randomuid = deliveryShipOrders1.getRandomUID();
         holder.Vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
