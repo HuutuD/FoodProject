@@ -49,7 +49,6 @@ public class OrderDish extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_dish);
 
-
         Foodname = (TextView) findViewById(R.id.food_name);
         ChefName = (TextView) findViewById(R.id.chef_name);
         ChefLoaction = (TextView) findViewById(R.id.chef_location);

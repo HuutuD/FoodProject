@@ -19,7 +19,7 @@ import com.example.foodprojectapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
+public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,37 +50,29 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
         Fragment selectedFragment = null;
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
-        if (item.getItemId() == R.id.Home) {
-            if (!(currentFragment instanceof CustomerHomeFragment)) {
-                selectedFragment = new CustomerHomeFragment();
-            }
-        } else if (item.getItemId() == R.id.Cart) {
-            if (!(currentFragment instanceof CustomerCartFragment)) {
-                selectedFragment = new CustomerCartFragment();
-            }
-        } else if (item.getItemId() == R.id.Profile) {
-            if (!(currentFragment instanceof CustomerProfileFragment)) {
-                selectedFragment = new CustomerProfileFragment();
-            }
-        } else if (item.getItemId() == R.id.Orders) {
-            if (!(currentFragment instanceof CustomerOrdersFragment)) {
-                selectedFragment = new CustomerOrdersFragment();
-            }
-        } else if (item.getItemId() == R.id.Track) {
-            if (!(currentFragment instanceof CustomerTrackFragment)) {
-                selectedFragment = new CustomerTrackFragment();
-            }
+        if (item.getItemId() == R.id.Home && !(currentFragment instanceof CustomerHomeFragment)) {
+            selectedFragment = new CustomerHomeFragment();
+        } else if (item.getItemId() == R.id.Cart && !(currentFragment instanceof CustomerCartFragment)) {
+            selectedFragment = new CustomerCartFragment();
+        } else if (item.getItemId() == R.id.Profile && !(currentFragment instanceof CustomerProfileFragment)) {
+            selectedFragment = new CustomerProfileFragment();
+        } else if (item.getItemId() == R.id.Order && !(currentFragment instanceof CustomerOrdersFragment)) {
+            selectedFragment = new CustomerOrdersFragment();
+        } else if (item.getItemId() == R.id.Track && !(currentFragment instanceof CustomerTrackFragment)) {
+            selectedFragment = new CustomerTrackFragment();
         }
 
         return loadFragment(selectedFragment);
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
             return true;
         }
-
         return false;
     }
 }

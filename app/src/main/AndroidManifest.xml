@@ -122,31 +122,30 @@
             android:name=".CustomerFoodPanel.CustomerLogin.Registeration"
             android:theme="@style/AppThemeNoActionbar" />
         <activity
-            android:name=".CustomerFoodPanel.CustomerFoodPanel_BottomNavigation"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppThemeNoActionbar"
-            android:exported="false"/>
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerFoodPanel_BottomNavigation"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name="com.example.foodprojectapp.CustomerFoodPanel.OrderDish" />
         <activity
-            android:name=".CustomerFoodPanel.OrderDish"
-            android:label="Order Dish" />
-
-<!--        <activity-->
-<!--            android:name=".CustomerFoodPanel.CustomerPhoneSendOTP"-->
-<!--            android:theme="@style/AppThemeNoActionbar"-->
-<!--            android:label="Mobile Number" />-->
-<!--        <activity-->
-<!--            android:name=".CustomerFoodPanel.CustomerPhonenumber"-->
-<!--            android:theme="@style/AppThemeNoActionbar"-->
-<!--            android:label="Mobile Number" />-->
-        <!--        <activity-->
-        <!--            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerForgotpassword"-->
-        <!--            android:label="Password" />-->
-        <!--        <activity-->
-        <!--            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPassword"-->
-        <!--            android:label="Password" />-->
-        <!--        =======================================================-->
-        <!--        Customer -->
-        <!--        =======================================================-->
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPaymentOTP"
+            android:label="Online Payment" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPayment"
+            android:label="Payable Orders" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.PayableOrders"
+            android:label="Payable Orders" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.PendingOrders"
+            android:label="Pending Orders" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPhoneSendOTP"
+            android:label="Mobile Number" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPhonenumber"
+            android:label="Mobile Number" />
+        <activity
+            android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPassword"
+            android:label="Password" />
 
         <activity
             android:name=".ChooseOne"

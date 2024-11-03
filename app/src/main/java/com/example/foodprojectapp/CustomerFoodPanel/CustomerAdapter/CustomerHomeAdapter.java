@@ -75,7 +75,6 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
             quantity = itemView.findViewById(R.id.tv_quantity);
 
             quantity.setText("1");
-
         }
     }
 }

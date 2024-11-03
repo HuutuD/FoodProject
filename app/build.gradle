@@ -75,5 +75,4 @@ dependencies {
     implementation libs.ccp
     implementation libs.legacy.support.v4
 
-
 }
