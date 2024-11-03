@@ -1,16 +1,16 @@
-package com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerModels;
 
 public class Customer {
 
 
-    private String City, ConfirmPassword, EmailID, FirstName, LastName, Mobileno, Password, State, Suburban, LocalAddress;
+    private String City, ConfirmPassword, EmailID, FirstName, LastName, Mobileno, Password, State, Suburban;
 
     public Customer() {
 
 
     }
 
-    public Customer(String City, String confirmPassword, String emailID, String firstName, String lastName, String mobileno, String password, String state, String suburban, String localAddress) {
+    public Customer(String City, String confirmPassword, String emailID, String firstName, String lastName, String mobileno, String password, String state, String suburban) {
         this.City = City;
         ConfirmPassword = confirmPassword;
         EmailID = emailID;
@@ -20,7 +20,6 @@ public class Customer {
         Password = password;
         State = state;
         Suburban = suburban;
-        LocalAddress = localAddress;
     }
 
     public String getCity() {
@@ -93,13 +92,5 @@ public class Customer {
 
     public void setSuburban(String suburban) {
         Suburban = suburban;
-    }
-
-    public String getLocalAddress() {
-        return LocalAddress;
-    }
-
-    public void setLocalAddress(String localAddress) {
-        LocalAddress = localAddress;
     }
 }

@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_dish_spoon_knife"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -106,14 +106,31 @@
             android:theme="@style/AppThemeNoActionbar" />
         <activity
             android:name=".CustomerFoodPanel.CustomerLogin.Registeration"
-            android:theme="@style/AppThemeNoActionbar" /> <!-- <activity -->
+            android:theme="@style/AppThemeNoActionbar"/>
+        <activity
+            android:name=".CustomerFoodPanel.CustomerPaymentOTP"
+            android:label="Online Payment"
+            android:theme="@style/AppThemeNoActionbar" />
+        <activity
+            android:name=".CustomerFoodPanel.CustomerPayment"
+            android:label="Payable Orders"
+            android:theme="@style/AppThemeNoActionbar" />
+        <activity
+            android:name=".CustomerFoodPanel.PayableOrders"
+            android:label="Payable Orders"
+            android:theme="@style/AppThemeNoActionbar" />
+        <activity
+            android:name=".CustomerFoodPanel.PendingOrders"
+            android:label="Pending Orders"
+            android:theme="@style/AppThemeNoActionbar" />
+        <activity android:name=".CustomerFoodPanel.OrderDish"
+            android:theme="@style/AppThemeNoActionbar" />
+        <activity
+            android:name=".CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppThemeNoActionbar"
+            android:exported="false"/>
 
-        <!-- <activity -->
-        <!-- android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerForgotpassword" -->
-        <!-- android:label="Password" /> -->
-        <!-- <activity -->
-        <!-- android:name="com.example.foodprojectapp.CustomerFoodPanel.CustomerPassword" -->
-        <!-- android:label="Password" /> -->
         <!-- ======================================================= -->
         <!-- Customer -->
         <!-- ======================================================= -->
