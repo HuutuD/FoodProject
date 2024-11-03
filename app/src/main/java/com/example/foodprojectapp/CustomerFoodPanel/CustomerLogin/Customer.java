@@ -3,15 +3,16 @@ package com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin;
 public class Customer {
 
 
-    private String City, ConfirmPassword, EmailID, FirstName, LastName, Mobileno, Password, State, Suburban, LocalAddress;
+    private String City, Area, ConfirmPassword, EmailID, FirstName, LastName, Mobileno, Password, State, Suburban, LocalAddress;
 
     public Customer() {
 
 
     }
 
-    public Customer(String City, String confirmPassword, String emailID, String firstName, String lastName, String mobileno, String password, String state, String suburban, String localAddress) {
+    public Customer(String City, String Area, String confirmPassword, String emailID, String firstName, String lastName, String mobileno, String password, String state, String suburban, String localAddress) {
         this.City = City;
+        Area = Area;
         ConfirmPassword = confirmPassword;
         EmailID = emailID;
         FirstName = firstName;
@@ -30,6 +31,10 @@ public class Customer {
     public void setCity(String city) {
         City = city;
     }
+
+    public String getArea() { return Area; }
+
+    public void setArea(String area) {Area = area;}
 
     public String getConfirmPassword() {
         return ConfirmPassword;

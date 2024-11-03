@@ -49,6 +49,7 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
 //    implementation libs.ccp
 
     // New dependencies from libs.versions.toml
@@ -73,4 +74,5 @@ dependencies {
     implementation libs.converter.gson
     implementation libs.ccp
     implementation libs.legacy.support.v4
+
 }
