@@ -4,24 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.Chef;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.Chef;
 import com.example.foodprojectapp.ChefFoodPanel.UpdateDishModel;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Customer;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.Customer;
 
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.Cart;
 import com.example.foodprojectapp.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +32,6 @@ public class OrderDish extends AppCompatActivity {
 
 
     String RandomId, ChefID;
-    ImageView imageView;
     Button btnIncrease, btnDecrease;
     TextView Foodname, ChefName, ChefLoaction, FoodQuantity, FoodPrice, FoodDescription, tvQuantity;
     DatabaseReference databaseReference, dataaa, chefdata, reference, data, dataref;
@@ -55,7 +51,6 @@ public class OrderDish extends AppCompatActivity {
         FoodQuantity = (TextView) findViewById(R.id.food_quantity);
         FoodPrice = (TextView) findViewById(R.id.food_price);
         FoodDescription = (TextView) findViewById(R.id.food_description);
-        imageView = (ImageView) findViewById(R.id.image);
         btnIncrease = findViewById(R.id.btn_increase);
         btnDecrease = findViewById(R.id.btn_decrease);
         tvQuantity = findViewById(R.id.tv_quantity);
@@ -107,7 +102,6 @@ public class OrderDish extends AppCompatActivity {
                         FoodDescription.setText(Html.fromHtml(ss));
                         String pri = "<b>" + "Price: ₹ " + "</b>" + updateDishModel.getPrice();
                         FoodPrice.setText(Html.fromHtml(pri));
-                        Glide.with(OrderDish.this).load(updateDishModel.getImageURL()).into(imageView);
 
                         chefdata = FirebaseDatabase.getInstance().getReference("Chef").child(ChefID);
                         chefdata.addListenerForSingleValueEvent(new ValueEventListener() {

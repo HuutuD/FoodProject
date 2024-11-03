@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerModels;
 
 public class CustomerFinalOrders1 {
 

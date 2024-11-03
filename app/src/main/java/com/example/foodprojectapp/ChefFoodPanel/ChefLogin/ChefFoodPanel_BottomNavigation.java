@@ -53,7 +53,7 @@ public class ChefFoodPanel_BottomNavigation extends AppCompatActivity implements
 
             }
         });
- }
+    }
 
     private boolean loadcheffragment(Fragment fragment) {
         if (fragment != null) {

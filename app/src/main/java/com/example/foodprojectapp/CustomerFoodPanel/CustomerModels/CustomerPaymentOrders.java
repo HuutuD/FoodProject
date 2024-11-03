@@ -1,10 +1,10 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerModels;
 
-public class CustomerFinalOrders {
+public class CustomerPaymentOrders {
 
     private String ChefId,DishId,DishName,DishPrice,DishQuantity,RandomUID,TotalPrice,UserId;
 
-    public CustomerFinalOrders(String chefId, String dishId, String dishName, String dishPrice, String dishQuantity, String randomUID, String totalPrice, String userId) {
+    public CustomerPaymentOrders(String chefId, String dishId, String dishName, String dishPrice, String dishQuantity, String randomUID, String totalPrice, String userId) {
         ChefId = chefId;
         DishId = dishId;
         DishName = dishName;
@@ -15,11 +15,10 @@ public class CustomerFinalOrders {
         UserId = userId;
     }
 
-    public CustomerFinalOrders()
+    public CustomerPaymentOrders()
     {
 
     }
-
 
     public String getChefId() {
         return ChefId;

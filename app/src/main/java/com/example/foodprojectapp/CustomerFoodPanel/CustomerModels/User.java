@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerModels;
 
 public class User {
 

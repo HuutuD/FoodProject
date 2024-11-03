@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerFoodPanel_BottomNavigation;
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.ReusableCode.ReusableCodeForAll;
 import com.google.android.gms.tasks.OnCompleteListener;

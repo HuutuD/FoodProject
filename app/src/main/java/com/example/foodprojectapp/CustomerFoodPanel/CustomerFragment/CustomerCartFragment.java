@@ -2,7 +2,6 @@ package com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment;
 
 import androidx.appcompat.app.AlertDialog;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -23,9 +22,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodprojectapp.CustomerFoodPanel.Cart;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.Cart;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerAdapter.CustomerCartAdapter;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Customer;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.Customer;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerPendingOrders;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerPendingOrders1;
 import com.example.foodprojectapp.R;
@@ -36,9 +35,6 @@ import com.example.foodprojectapp.SendNotification.Data;
 import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.example.foodprojectapp.SendNotification.NotificationSender;
 
-import com.example.foodprojectapp.SendNotification.Client;
-import com.example.foodprojectapp.SendNotification.Data;
-import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -96,7 +92,10 @@ public class CustomerCartFragment extends Fragment {
     private void customercart() {
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Cart").child("CartItems").child(userID);
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference("Cart")
+                .child("CartItems")
+                .child(userID);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -121,8 +120,21 @@ public class CustomerCartFragment extends Fragment {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    FirebaseDatabase.getInstance().getReference("Cart").child("CartItems").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
-                                    FirebaseDatabase.getInstance().getReference("Cart").child("GrandTotal").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+                                    FirebaseDatabase.getInstance()
+                                            .getReference("Cart")
+                                            .child("CartItems")
+                                            .child(FirebaseAuth.getInstance()
+                                                    .getCurrentUser()
+                                                    .getUid())
+                                            .removeValue();
+                                    FirebaseDatabase.getInstance()
+                                            .getReference("Cart")
+                                            .child("GrandTotal").
+                                            child(FirebaseAuth.
+                                                    getInstance()
+                                                    .getCurrentUser()
+                                                    .getUid())
+                                            .removeValue();
 
                                 }
                             });
@@ -175,7 +187,7 @@ public class CustomerCartFragment extends Fragment {
                                                     public void onCheckedChanged(RadioGroup group, int checkedId) {
                                                         if (home.isChecked()) {
 
-                                                            localaddress.setText(customer.getLocalAddress() + ", " + customer.getSuburban());
+                                                            localaddress.setText(customer.getState() + ", " +customer.getCity() + ", " + customer.getSuburban());
                                                         } else if (other.isChecked()) {
                                                             localaddress.getText().clear();
                                                             Toast.makeText(getContext(), "check", Toast.LENGTH_SHORT).show();
@@ -208,10 +220,25 @@ public class CustomerCartFragment extends Fragment {
                                                                     hashMap.put("DishQuantity", cart1.getDishQuantity());
                                                                     hashMap.put("Price", cart1.getPrice());
                                                                     hashMap.put("TotalPrice", cart1.getTotalprice());
-                                                                    FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId).child("Dishes").child(DishId).setValue(hashMap);
+                                                                    FirebaseDatabase.getInstance()
+                                                                            .getReference("CustomerPendingOrders")
+                                                                            .child(FirebaseAuth
+                                                                                    .getInstance()
+                                                                                    .getCurrentUser()
+                                                                                    .getUid())
+                                                                            .child(RandomUId)
+                                                                            .child("Dishes")
+                                                                            .child(DishId)
+                                                                            .setValue(hashMap);
 
                                                                 }
-                                                                ref = FirebaseDatabase.getInstance().getReference("Cart").child("GrandTotal").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GrandTotal");
+                                                                ref = FirebaseDatabase.getInstance().getReference("Cart")
+                                                                        .child("GrandTotal")
+                                                                        .child(FirebaseAuth
+                                                                                .getInstance()
+                                                                                .getCurrentUser()
+                                                                                .getUid())
+                                                                        .child("GrandTotal");
                                                                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -222,18 +249,48 @@ public class CustomerCartFragment extends Fragment {
                                                                         hashMap1.put("MobileNumber", customer.getMobileno());
                                                                         hashMap1.put("Name", customer.getFirstName() + " " + customer.getLastName());
                                                                         hashMap1.put("Note", Addnote);
-                                                                        FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId).child("OtherInformation").setValue(hashMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        FirebaseDatabase.getInstance()
+                                                                                .getReference("CustomerPendingOrders")
+                                                                                .child(FirebaseAuth
+                                                                                        .getInstance()
+                                                                                        .getCurrentUser()
+                                                                                        .getUid())
+                                                                                .child(RandomUId)
+                                                                                .child("OtherInformation")
+                                                                                .setValue(hashMap1)
+                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                             @Override
                                                                             public void onComplete(@NonNull Task<Void> task) {
 
-                                                                                FirebaseDatabase.getInstance().getReference("Cart").child("CartItems").child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                FirebaseDatabase.getInstance()
+                                                                                        .getReference("Cart")
+                                                                                        .child("CartItems")
+                                                                                        .child(FirebaseAuth
+                                                                                                .getInstance()
+                                                                                                .getUid())
+                                                                                        .removeValue()
+                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                                                        FirebaseDatabase.getInstance().getReference("Cart").child("GrandTotal").child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                        FirebaseDatabase.getInstance()
+                                                                                                .getReference("Cart")
+                                                                                                .child("GrandTotal")
+                                                                                                .child(FirebaseAuth
+                                                                                                        .getInstance()
+                                                                                                        .getUid())
+                                                                                                .removeValue()
+                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                             @Override
                                                                                             public void onComplete(@NonNull Task<Void> task) {
 
-                                                                                                getRef = FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId).child("Dishes");
+                                                                                                getRef = FirebaseDatabase.getInstance()
+                                                                                                        .getReference("CustomerPendingOrders")
+                                                                                                        .child(FirebaseAuth
+                                                                                                                .getInstance()
+                                                                                                                .getCurrentUser()
+                                                                                                                .getUid())
+                                                                                                        .child(RandomUId)
+                                                                                                        .child("Dishes");
                                                                                                 getRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                                     @Override
                                                                                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -253,9 +310,22 @@ public class CustomerCartFragment extends Fragment {
                                                                                                             hashMap2.put("TotalPrice", customerPendingOrders.getTotalPrice());
                                                                                                             hashMap2.put("UserId", userid);
 
-                                                                                                            FirebaseDatabase.getInstance().getReference("ChefPendingOrders").child(ChefId).child(RandomUId).child("Dishes").child(d).setValue(hashMap2);
+                                                                                                            FirebaseDatabase.getInstance()
+                                                                                                                    .getReference("ChefPendingOrders")
+                                                                                                                    .child(ChefId)
+                                                                                                                    .child(RandomUId)
+                                                                                                                    .child("Dishes")
+                                                                                                                    .child(d)
+                                                                                                                    .setValue(hashMap2);
                                                                                                         }
-                                                                                                        dataa = FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUId).child("OtherInformation");
+                                                                                                        dataa = FirebaseDatabase.getInstance()
+                                                                                                                .getReference("CustomerPendingOrders")
+                                                                                                                .child(FirebaseAuth
+                                                                                                                        .getInstance()
+                                                                                                                        .getCurrentUser()
+                                                                                                                        .getUid())
+                                                                                                                .child(RandomUId)
+                                                                                                                .child("OtherInformation");
                                                                                                         dataa.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                                             @Override
                                                                                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -268,7 +338,13 @@ public class CustomerCartFragment extends Fragment {
                                                                                                                 hashMap3.put("Note", customerPendingOrders1.getNote());
                                                                                                                 hashMap3.put("RandomUID", RandomUId);
 
-                                                                                                                FirebaseDatabase.getInstance().getReference("ChefPendingOrders").child(ChefId).child(RandomUId).child("OtherInformation").setValue(hashMap3).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                                FirebaseDatabase.getInstance()
+                                                                                                                        .getReference("ChefPendingOrders")
+                                                                                                                        .child(ChefId)
+                                                                                                                        .child(RandomUId)
+                                                                                                                        .child("OtherInformation")
+                                                                                                                        .setValue(hashMap3)
+                                                                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                                                     @Override
                                                                                                                     public void onSuccess(Void aVoid) {
 
@@ -276,7 +352,12 @@ public class CustomerCartFragment extends Fragment {
                                                                                                                             @Override
                                                                                                                             public void onSuccess(Void aVoid) {
 
-                                                                                                                                FirebaseDatabase.getInstance().getReference().child("Tokens").child(ChefId).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                                                                FirebaseDatabase.getInstance()
+                                                                                                                                        .getReference()
+                                                                                                                                        .child("Tokens")
+                                                                                                                                        .child(ChefId)
+                                                                                                                                        .child("token")
+                                                                                                                                        .addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                                                                     @Override
                                                                                                                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                                                                                                         String usertoken = dataSnapshot.getValue(String.class);

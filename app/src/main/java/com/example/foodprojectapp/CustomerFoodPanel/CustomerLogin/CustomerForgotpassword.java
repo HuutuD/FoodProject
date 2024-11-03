@@ -1,4 +1,4 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -49,7 +49,7 @@ public class CustomerForgotpassword extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     dialog.dismiss();
-                                    Intent bb = new Intent(CustomerForgotpassword.this, CustomerPassword.class);
+                                    Intent bb = new Intent(CustomerForgotpassword.this, Login.class);
                                     startActivity(bb);
 
                                 }

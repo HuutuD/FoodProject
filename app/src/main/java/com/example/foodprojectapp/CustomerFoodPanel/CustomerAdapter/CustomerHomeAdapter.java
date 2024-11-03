@@ -5,15 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.foodprojectapp.CustomerFoodPanel.OrderDish;
-import com.example.foodprojectapp.CustomerFoodPanel.UpdateDishModel;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.UpdateDishModel;
 import com.example.foodprojectapp.R;
 import com.google.firebase.database.DatabaseReference;
 
@@ -40,19 +39,23 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final UpdateDishModel updateDishModel= updateDishModelList.get(position);
-        Glide.with(mcontext).load(updateDishModel.getImageURL()).into(holder.imageView);
+
         holder.dishName.setText(updateDishModel.getDishes());
         updateDishModel.getRandomUID();
         updateDishModel.getChefId();
-        holder.price.setText("Price: ₹ " + updateDishModel.getPrice());
+        holder.price.setText("Price: VND " + updateDishModel.getPrice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mcontext, OrderDish.class);
-                intent.putExtra("FoodMenu",updateDishModel.getRandomUID());
-                intent.putExtra("ChefId",updateDishModel.getChefId());
-
-                mcontext.startActivity(intent);
+                Intent intent = new Intent(mcontext, OrderDish.class);
+                if (updateDishModel.getRandomUID() != null && updateDishModel.getChefId() != null) {
+                    intent.putExtra("FoodMenu", updateDishModel.getRandomUID());
+                    intent.putExtra("ChefId", updateDishModel.getChefId());
+                    mcontext.startActivity(intent);
+                } else {
+                    // Xử lý trường hợp không có dữ liệu
+                    Toast.makeText(mcontext, "Missing data for dish", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -63,13 +66,11 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
         TextView dishName, price, quantity;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.menu_image);
             dishName = itemView.findViewById(R.id.dishname);
             price = itemView.findViewById(R.id.dishprice);
             quantity = itemView.findViewById(R.id.tv_quantity);

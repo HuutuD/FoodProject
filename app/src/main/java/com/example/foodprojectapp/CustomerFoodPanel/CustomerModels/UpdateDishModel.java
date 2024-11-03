@@ -1,18 +1,17 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerModels;
 
 public class UpdateDishModel {
 
-    public UpdateDishModel(String dishes, String randomUID, String description, String quantity, String price, String imageURL, String chefId) {
+    public UpdateDishModel(String dishes, String randomUID, String description, String quantity, String price,  String chefId) {
         Dishes = dishes;
         RandomUID = randomUID;
         Description = description;
         Quantity = quantity;
         Price = price;
-        ImageURL = imageURL;
         ChefId = chefId;
     }
 
-    String Dishes, RandomUID, Description, Quantity, Price, ImageURL, ChefId;
+    String Dishes, RandomUID, Description, Quantity, Price, ChefId;
 
     public String getDishes() {
         return Dishes;
@@ -52,14 +51,6 @@ public class UpdateDishModel {
 
     public void setPrice(String price) {
         Price = price;
-    }
-
-    public String getImageURL() {
-        return ImageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        ImageURL = imageURL;
     }
 
     public String getChefId() {

@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.CustomerPaymentOrder1;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.CustomerPaymentOrders;
 import com.example.foodprojectapp.R;
 import com.example.foodprojectapp.SendNotification.APIService;
 import com.example.foodprojectapp.SendNotification.Client;
@@ -20,9 +22,6 @@ import com.example.foodprojectapp.SendNotification.Data;
 import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.example.foodprojectapp.SendNotification.NotificationSender;
 
-import com.example.foodprojectapp.SendNotification.Client;
-import com.example.foodprojectapp.SendNotification.Data;
-import com.example.foodprojectapp.SendNotification.MyResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

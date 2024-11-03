@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.foodprojectapp.ChefFoodPanel.ChefPreparedOrderView;
 import com.example.foodprojectapp.ChefFoodPanel.ChefLogin.ChefFoodPanel_BottomNavigation;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerFoodPanel_BottomNavigation;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation;
 import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryLogin.Delivery_FoodPanelBottomNavigation;
 import com.example.foodprojectapp.MainActivity;
 import com.example.foodprojectapp.R;

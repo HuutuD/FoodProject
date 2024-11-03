@@ -1,47 +1,59 @@
-package com.example.foodprojectapp.CustomerFoodPanel;
+package com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerCartFragment;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerHomeFragment;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerOrdersFragment;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerProfileFragment;
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerFragment.CustomerTrackFragment;
+import com.example.foodprojectapp.MainMenu;
 import com.example.foodprojectapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener{
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_food_panel_bottom_navigation);
+
         BottomNavigationView navigationView = findViewById(R.id.customer_bottom_navigation);
         navigationView.setOnItemSelectedListener(this);
-        String name = getIntent().getStringExtra("PAGE");
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(name != null){
-            if(name.equalsIgnoreCase("Homepage")){
-                loadFragment(new CustomerHomeFragment());
-            }else if(name.equalsIgnoreCase("Preparingpage")){
-                loadFragment(new CustomerTrackFragment());
-            }else if (name.equalsIgnoreCase("DeliveryOrderpage")){
-                loadFragment(new CustomerTrackFragment());
-            }else if (name.equalsIgnoreCase("Thankyoupage")){
-                loadFragment(new CustomerHomeFragment());
-            }
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.LogOut) {
+            FirebaseAuth.getInstance().signOut();
+            // Chuyển về trang LoginActivity
+            Intent intent = new Intent(this, MainMenu.class); // Thay LoginActivity bằng tên Activity đăng nhập của bạn
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa ngăn xếp back
+            startActivity(intent);
+            finish(); // Đóng activity hiện tại
+            return true;
         } else {
-            loadFragment(new CustomerHomeFragment());
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -62,7 +74,13 @@ public class CustomerFoodPanel_BottomNavigation extends AppCompatActivity implem
             selectedFragment = new CustomerTrackFragment();
         }
 
-        return loadFragment(selectedFragment);
+        if (selectedFragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, selectedFragment)
+                    .commit();
+        }
+        return true;
     }
 
     public boolean loadFragment(Fragment fragment) {

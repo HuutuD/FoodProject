@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerAdapter.CustomerHomeAdapter;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerLogin.Customer;
-import com.example.foodprojectapp.CustomerFoodPanel.UpdateDishModel;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.Customer;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.UpdateDishModel;
 import com.example.foodprojectapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +34,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
     RecyclerView recyclerView;
     private List<UpdateDishModel> updateDishModelList;
     private CustomerHomeAdapter adapter;
-    String State, City, Area;
+    String State, City, Sub;
     DatabaseReference data, databaseReference;
     SwipeRefreshLayout swipeRefreshLayout;
     SearchView searchView;
@@ -66,7 +66,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
                         Customer cus = snapshot.getValue(Customer.class);
                         State = cus.getState();
                         City = cus.getCity();
-                        Area = cus.getArea();
+                        Sub = cus.getSuburban();
                         customerMenu();
                     }
 
@@ -95,11 +95,15 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
         if (City == null || City.isEmpty()) {
             City = "DefaultCity";
         }
-        if (Area == null || Area.isEmpty()) {
-            Area = "DefaultArea";
+        if (Sub == null || Sub.isEmpty()) {
+            Sub = "DefaultArea";
         }
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Area);
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference("FoodSupplyDetails")
+                .child(State)
+                .child(City)
+                .child(Sub);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,8 +114,13 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
                         updateDishModelList.add(updateDishModel);
                     }
                 }
-                adapter = new CustomerHomeAdapter(getContext(), updateDishModelList);
-                recyclerView.setAdapter(adapter);
+                if (adapter == null) {
+                    adapter = new CustomerHomeAdapter(getContext(), updateDishModelList);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    // Nếu adapter đã tồn tại, chỉ cần cập nhật dữ liệu
+                    adapter.notifyDataSetChanged();
+                }
                 swipeRefreshLayout.setRefreshing(false);
             }
 
