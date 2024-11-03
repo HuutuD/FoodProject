@@ -109,22 +109,17 @@
             android:theme="@style/AppThemeNoActionbar"/>
         <activity
             android:name=".CustomerFoodPanel.CustomerPaymentOTP"
-            android:label="Online Payment"
-            android:theme="@style/AppThemeNoActionbar" />
+            android:label="Online Payment" />
         <activity
             android:name=".CustomerFoodPanel.CustomerPayment"
-            android:label="Payable Orders"
-            android:theme="@style/AppThemeNoActionbar" />
+            android:label="Payable Orders" />
         <activity
             android:name=".CustomerFoodPanel.PayableOrders"
-            android:label="Payable Orders"
-            android:theme="@style/AppThemeNoActionbar" />
+            android:label="Payable Orders" />
         <activity
             android:name=".CustomerFoodPanel.PendingOrders"
-            android:label="Pending Orders"
-            android:theme="@style/AppThemeNoActionbar" />
-        <activity android:name=".CustomerFoodPanel.OrderDish"
-            android:theme="@style/AppThemeNoActionbar" />
+            android:label="Pending Orders" />
+        <activity android:name=".CustomerFoodPanel.OrderDish" />
         <activity
             android:name=".CustomerFoodPanel.CustomerLogin.CustomerFoodPanel_BottomNavigation"
             android:windowSoftInputMode="adjustNothing"

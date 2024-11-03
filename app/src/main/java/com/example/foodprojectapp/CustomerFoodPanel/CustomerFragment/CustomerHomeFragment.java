@@ -34,7 +34,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
     RecyclerView recyclerView;
     private List<UpdateDishModel> updateDishModelList;
     private CustomerHomeAdapter adapter;
-    String State, City, Sub;
+    String State, Sub;
     DatabaseReference data, databaseReference;
     SwipeRefreshLayout swipeRefreshLayout;
     SearchView searchView;
@@ -65,7 +65,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Customer cus = snapshot.getValue(Customer.class);
                         State = cus.getState();
-                        City = cus.getCity();
+//                        City = cus.getCity();
                         Sub = cus.getSuburban();
                         customerMenu();
                     }
@@ -92,9 +92,7 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
         if (State == null || State.isEmpty()) {
             State = "DefaultState";
         }
-        if (City == null || City.isEmpty()) {
-            City = "DefaultCity";
-        }
+
         if (Sub == null || Sub.isEmpty()) {
             Sub = "DefaultArea";
         }
@@ -102,7 +100,6 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
         databaseReference = FirebaseDatabase.getInstance()
                 .getReference("FoodSupplyDetails")
                 .child(State)
-                .child(City)
                 .child(Sub);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
