@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodprojectapp.ChefFoodPanel.ChefFinalOrders1;
+import com.example.foodprojectapp.ChefFoodPanel.ChefModels.ChefFinalOrders1;
 import com.example.foodprojectapp.ChefFoodPanel.ChefPreparedOrder;
 import com.example.foodprojectapp.ChefFoodPanel.ChefPreparedOrderView;
 import com.example.foodprojectapp.R;
