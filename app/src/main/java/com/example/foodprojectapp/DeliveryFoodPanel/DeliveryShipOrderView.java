@@ -33,6 +33,7 @@ public class DeliveryShipOrderView extends AppCompatActivity {
     String RandomUID;
     TextView grandtotal, address, name, number, ChefName;
     LinearLayout l1;
+    String deliveryId = "iCWpMP1H52XbGvqEsmYykc6OYsN2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,9 @@ public class DeliveryShipOrderView extends AppCompatActivity {
 
     private void deliveryfinalorders() {
 
-        RandomUID = getIntent().getStringExtra("RandomUID");
+        RandomUID = getIntent().getStringExtra("Random");
 
-        reference = FirebaseDatabase.getInstance().getReference("DeliveryShipFinalOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUID).child("Dishes");
+        reference = FirebaseDatabase.getInstance().getReference("DeliveryShipFinalOrders").child(deliveryId).child(RandomUID).child("Dishes");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -80,7 +81,7 @@ public class DeliveryShipOrderView extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("DeliveryShipFinalOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUID).child("OtherInformation");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("DeliveryShipFinalOrders").child(deliveryId).child(RandomUID).child("OtherInformation");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
