@@ -36,9 +36,9 @@ public class PendingOrdersAdapter extends RecyclerView.Adapter<PendingOrdersAdap
 
         final CustomerPendingOrders customerPendingOrders = customerPendingOrderslist.get(position);
         holder.Dishname.setText(customerPendingOrders.getDishName());
-        holder.Price.setText("Price: ₹ " + customerPendingOrders.getPrice());
+        holder.Price.setText("Price: " + customerPendingOrders.getPrice()+ " VND");
         holder.Quantity.setText("× " + customerPendingOrders.getDishQuantity());
-        holder.Totalprice.setText("Total: ₹ " + customerPendingOrders.getTotalPrice());
+        holder.Totalprice.setText("Total: " + customerPendingOrders.getTotalPrice()+ " VND");
 
     }
 

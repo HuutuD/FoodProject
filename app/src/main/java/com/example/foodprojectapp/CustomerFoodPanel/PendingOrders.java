@@ -41,13 +41,25 @@ public class PendingOrders extends AppCompatActivity {
 
     private void CustomerpendingOrders() {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference("CustomerPendingOrders")
+                .child(FirebaseAuth
+                        .getInstance()
+                        .getCurrentUser()
+                        .getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 customerPendingOrdersList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    DatabaseReference data = FirebaseDatabase.getInstance().getReference("CustomerPendingOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(snapshot.getKey()).child("Dishes");
+                    DatabaseReference data = FirebaseDatabase.getInstance()
+                            .getReference("CustomerPendingOrders")
+                            .child(FirebaseAuth
+                                    .getInstance()
+                                    .getCurrentUser()
+                                    .getUid())
+                            .child(snapshot.getKey())
+                            .child("Dishes");
                     data.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

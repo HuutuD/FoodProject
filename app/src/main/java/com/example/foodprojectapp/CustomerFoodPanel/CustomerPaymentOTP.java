@@ -62,7 +62,14 @@ public class CustomerPaymentOTP extends AppCompatActivity {
 
                 ot = otp.getText().toString().trim();
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("CustomerPaymentOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(RandomUID).child("Dishes");
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                        .getReference("CustomerPaymentOrders")
+                        .child(FirebaseAuth
+                                .getInstance()
+                                .getCurrentUser()
+                                .getUid())
+                        .child(RandomUID)
+                        .child("Dishes");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
