@@ -37,7 +37,7 @@ public class ChefHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_chef_home, null);
-        getActivity().setTitle("Food On");
+        getActivity().setTitle("Home");
         setHasOptionsMenu(true);
 
         recyclerView = v.findViewById(R.id.Recycle_menu);
@@ -69,7 +69,13 @@ public class ChefHomeFragment extends Fragment {
 
     private void chefDishes() {
         String useridd = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FoodSupplyDetails").child(State).child(City).child(Sub).child(useridd);
+        DatabaseReference databaseReference = FirebaseDatabase
+                .getInstance()
+                .getReference("FoodSupplyDetails")
+                .child(State)
+                .child(City)
+                .child(Sub)
+                .child(useridd);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

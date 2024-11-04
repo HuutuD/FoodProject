@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.foodprojectapp.CustomerFoodPanel.CustomerAdapter.PendingOrdersAdapter;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.CustomerPendingOrders;
 import com.example.foodprojectapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
