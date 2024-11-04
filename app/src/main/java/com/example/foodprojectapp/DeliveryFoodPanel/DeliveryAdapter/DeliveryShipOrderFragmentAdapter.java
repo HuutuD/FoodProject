@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryModels.DeliveryShipFinalOrders1;
+import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryPendingOrderView;
 import com.example.foodprojectapp.DeliveryFoodPanel.DeliveryShipOrderView;
 import com.example.foodprojectapp.DeliveryFoodPanel.Delivery_ShippingOrder;
 import com.example.foodprojectapp.R;
@@ -39,6 +40,7 @@ public class DeliveryShipOrderFragmentAdapter extends RecyclerView.Adapter<Deliv
     private Context context;
     private List<DeliveryShipFinalOrders1> deliveryShipFinalOrders1list;
     private APIService apiService;
+    String deliveryId = "oCpc4SwLVFbKO0fPdtp4R6bmDmI3";
 
 
     public DeliveryShipOrderFragmentAdapter(Context context, List<DeliveryShipFinalOrders1> deliveryShipFinalOrders1list) {
@@ -63,46 +65,23 @@ public class DeliveryShipOrderFragmentAdapter extends RecyclerView.Adapter<Deliv
         holder.mobilenumber.setText("+84" + deliveryShipFinalOrders1.getMobileNumber());
         final String random = deliveryShipFinalOrders1.getRandomUID();
         final String userid = deliveryShipFinalOrders1.getUserId();
-        holder.Vieworder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DeliveryShipOrderView.class);
-                intent.putExtra("RandomUID", random);
-                context.startActivity(intent);
-            }
+
+        holder.Vieworder.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DeliveryPendingOrderView.class);
+            intent.putExtra("Random", random);
+            context.startActivity(intent);
         });
 
         holder.ShipOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Hiển thị Toast khi nhấp vào ShipOrder
+                Toast.makeText(context, "Đơn hàng được nhận...", Toast.LENGTH_SHORT).show();
 
-                FirebaseDatabase.getInstance().getReference("CustomerFinalOrders").child(userid).child(random).child("OtherInformation").child("Status").setValue("Your Order is on the way...").addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        FirebaseDatabase.getInstance().getReference().child("Tokens").child(userid).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String usertoken = dataSnapshot.getValue(String.class);
-                                sendNotifications(usertoken, "Estimated Time", "Your Order has been collected by Delivery Person, He is on the way", "DeliverOrder");
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Intent intent = new Intent(context, Delivery_ShippingOrder.class);
-                        intent.putExtra("RandomUID",random);
-                        context.startActivity(intent);
-                    }
-                });
-
+                // Không thực hiện thêm hành động nào khác
             }
         });
+
 
     }
 

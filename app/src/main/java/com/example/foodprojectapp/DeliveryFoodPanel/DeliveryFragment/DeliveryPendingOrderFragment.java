@@ -1,7 +1,10 @@
 package com.example.foodprojectapp.DeliveryFoodPanel.DeliveryFragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,65 +52,54 @@ public class DeliveryPendingOrderFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         deliveryShipOrders1List = new ArrayList<>();
-        swipeRefreshLayout = view.findViewById(R.id.Swipe);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.green);
         adapter = new DeliveryPendingOrderFragmentAdapter(getContext(), deliveryShipOrders1List);
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout = view.findViewById(R.id.Swipe);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.green);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 deliveryShipOrders1List.clear();
-                recyclerView = view.findViewById(R.id.delipendingorder);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                deliveryShipOrders1List = new ArrayList<>();
                 DeliveryPendingOrders();
             }
         });
         DeliveryPendingOrders();
-
         return view;
     }
 
     private void DeliveryPendingOrders() {
-
         databaseReference = FirebaseDatabase.getInstance().getReference("DeliveryShipOrders").child(deliveryId);
+        Log.d(TAG, "Database reference: " + databaseReference.toString());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange called");
                 if (dataSnapshot.exists()) {
+                    Log.d(TAG, "Data exists: " + dataSnapshot.getValue());
                     deliveryShipOrders1List.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        DatabaseReference data = FirebaseDatabase.getInstance().getReference("DeliveryShipOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(snapshot.getKey()).child("OtherInformation");
-                        data.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                DeliveryShipOrders1 deliveryShipOrders1 = dataSnapshot.getValue(DeliveryShipOrders1.class);
-                                deliveryShipOrders1List.add(deliveryShipOrders1);
-                                adapter = new DeliveryPendingOrderFragmentAdapter(getContext(), deliveryShipOrders1List);
-                                recyclerView.setAdapter(adapter);
-                                swipeRefreshLayout.setRefreshing(false);
-                            }
+                        DataSnapshot otherInfoSnapshot = snapshot.child("OtherInformation");
+                        DeliveryShipOrders1 deliveryShipOrders1 = otherInfoSnapshot.getValue(DeliveryShipOrders1.class);
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
+                        if (deliveryShipOrders1 != null) {
+                            deliveryShipOrders1List.add(deliveryShipOrders1);
+                        }
                     }
+                    adapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false);
                 } else {
+                    Log.d(TAG, "Data does not exist at path: " + databaseReference.toString());
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e(TAG, "Database error: " + databaseError.getMessage());
             }
         });
-
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -116,7 +108,6 @@ public class DeliveryPendingOrderFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int idd = item.getItemId();
         if (idd == R.id.LogOut) {
             Logout();
@@ -126,11 +117,9 @@ public class DeliveryPendingOrderFragment extends Fragment {
     }
 
     private void Logout() {
-
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(getActivity(), MainMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-
     }
 }
