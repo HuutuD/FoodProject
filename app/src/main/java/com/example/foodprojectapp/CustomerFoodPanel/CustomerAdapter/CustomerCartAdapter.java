@@ -41,12 +41,12 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Cart cart = cartModellist.get(position);
         holder.dishname.setText(cart.getDishName());
-        holder.PriceRs.setText("Price: ₹ " + cart.getPrice());
+        holder.PriceRs.setText("Price: " + cart.getPrice() + "VND");
         holder.Qty.setText("× 1");
 
         final int dishprice = Integer.parseInt(cart.getPrice());
         int totalprice = dishprice;
-        holder.Totalrs.setText("Total: ₹ " + totalprice);
+        holder.Totalrs.setText("Total: " + totalprice + "VND");
         cart.setDishQuantity("1");
 
         HashMap<String, String> hashMap = new HashMap<>();
@@ -65,7 +65,7 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
                 .setValue(hashMap);
 
         total += totalprice;
-        CustomerCartFragment.grandt.setText("Grand Total: ₹ " + total);
+        CustomerCartFragment.grandt.setText("Grand Total: " + total + " VND");
 
         FirebaseDatabase.getInstance()
                 .getReference("Cart")

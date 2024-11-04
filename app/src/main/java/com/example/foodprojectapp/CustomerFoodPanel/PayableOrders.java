@@ -118,7 +118,7 @@ public class PayableOrders extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
                                     CustomerPaymentOrder1 customerPaymentOrders1 = dataSnapshot.getValue(CustomerPaymentOrder1.class);
-                                    grandtotal.setText("₹ " + customerPaymentOrders1.getGrandTotalPrice());
+                                    grandtotal.setText( customerPaymentOrders1.getGrandTotalPrice()+ " VND");
                                     swipeRefreshLayout.setRefreshing(false);
 
                                 } else {
