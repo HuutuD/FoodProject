@@ -36,9 +36,9 @@ public class DeliveryShipOrderViewAdapter extends RecyclerView.Adapter<DeliveryS
 
         final DeliveryShipFinalOrders deliveryShipFinalOrders = deliveryShipFinalOrderslist.get(position);
         holder.dishname.setText(deliveryShipFinalOrders.getDishName());
-        holder.price.setText("Price: VND " + deliveryShipFinalOrders.getDishPrice());
+        holder.price.setText("Price: " + deliveryShipFinalOrders.getDishPrice()+ " VND");
         holder.quantity.setText("× " + deliveryShipFinalOrders.getDishQuantity());
-        holder.totalprice.setText("Total: VND " + deliveryShipFinalOrders.getTotalPrice());
+        holder.totalprice.setText("Total: " + deliveryShipFinalOrders.getTotalPrice()+ " VND");
     }
 
     @Override

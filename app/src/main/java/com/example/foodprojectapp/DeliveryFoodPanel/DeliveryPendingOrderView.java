@@ -84,7 +84,7 @@ public class DeliveryPendingOrderView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 DeliveryShipOrders1 deliveryShipOrders1 = dataSnapshot.getValue(DeliveryShipOrders1.class);
-                grandtotal.setText("VND " + deliveryShipOrders1.getGrandTotalPrice());
+                grandtotal.setText(deliveryShipOrders1.getGrandTotalPrice()+ " VND");
                 address.setText(deliveryShipOrders1.getAddress());
                 name.setText(deliveryShipOrders1.getName());
                 number.setText("+84" + deliveryShipOrders1.getMobileNumber());

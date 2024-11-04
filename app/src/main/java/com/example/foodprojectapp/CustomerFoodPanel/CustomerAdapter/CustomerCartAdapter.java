@@ -41,12 +41,12 @@ public class CustomerCartAdapter extends RecyclerView.Adapter<CustomerCartAdapte
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Cart cart = cartModellist.get(position);
         holder.dishname.setText(cart.getDishName());
-        holder.PriceRs.setText("Price: " + cart.getPrice() + "VND");
+        holder.PriceRs.setText("Price: " + cart.getPrice() + " VND");
         holder.Qty.setText("× 1");
 
         final int dishprice = Integer.parseInt(cart.getPrice());
         int totalprice = dishprice;
-        holder.Totalrs.setText("Total: " + totalprice + "VND");
+        holder.Totalrs.setText("Total: " + totalprice + " VND");
         cart.setDishQuantity("1");
 
         HashMap<String, String> hashMap = new HashMap<>();

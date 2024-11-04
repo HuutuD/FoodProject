@@ -74,7 +74,7 @@ public class Delivery_ShippingOrder extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 DeliveryShipFinalOrders1 deliveryShipFinalOrders1 = dataSnapshot.getValue(DeliveryShipFinalOrders1.class);
-                grandtotal.setText("VND " + deliveryShipFinalOrders1.getGrandTotalPrice());
+                grandtotal.setText(deliveryShipFinalOrders1.getGrandTotalPrice()+ " VND");
                 Address.setText(deliveryShipFinalOrders1.getAddress());
                 Custname.setText(deliveryShipFinalOrders1.getName());
                 MobileNumber.setText("+84" + deliveryShipFinalOrders1.getMobileNumber());
