@@ -10,9 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.foodprojectapp.CustomerFoodPanel.OrderDish;
 import com.example.foodprojectapp.ChefFoodPanel.UpdateDishModel;
+import com.example.foodprojectapp.CustomerFoodPanel.OrderDish;
 import com.example.foodprojectapp.R;
 import com.google.firebase.database.DatabaseReference;
 
@@ -47,15 +46,13 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mcontext, OrderDish.class);
-                if (updateDishModel.getRandomUID() != null && updateDishModel.getChefId() != null) {
-                    intent.putExtra("FoodMenu", updateDishModel.getRandomUID());
-                    intent.putExtra("ChefId", updateDishModel.getChefId());
-                    mcontext.startActivity(intent);
-                } else {
-                    // Xử lý trường hợp không có dữ liệu
-                    Toast.makeText(mcontext, "Missing data for dish", Toast.LENGTH_SHORT).show();
-                }
+
+                Intent intent=new Intent(mcontext,OrderDish.class);
+                intent.putExtra("FoodMenu",updateDishModel.getRandomUID());
+                intent.putExtra("ChefId",updateDishModel.getChefId());
+
+
+                mcontext.startActivity(intent);
             }
         });
     }
@@ -66,16 +63,14 @@ public class CustomerHomeAdapter extends RecyclerView.Adapter<CustomerHomeAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView dishName, price, quantity;
+        TextView dishName, price;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             dishName = itemView.findViewById(R.id.dishname);
             price = itemView.findViewById(R.id.dishprice);
-            quantity = itemView.findViewById(R.id.tv_quantity);
 
-            quantity.setText("1");
         }
     }
 }
