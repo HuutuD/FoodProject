@@ -6,9 +6,7 @@ public class UpdateDishModel {
     private String Description;
     private String Quantity;
     private String Price;
-    private String ImageURL;
     private String ChefId;
-
     public UpdateDishModel() {
         // Constructor trống cần thiết cho Firebase
     }
@@ -51,14 +49,6 @@ public class UpdateDishModel {
 
     public void setPrice(String price) {
         Price = price;
-    }
-
-    public String getImageURL() {
-        return ImageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        ImageURL = imageURL;
     }
 
     public String getChefId() {

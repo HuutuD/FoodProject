@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodprojectapp.CustomerFoodPanel.OrderDish;
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.UpdateDishModel;
+import com.example.foodprojectapp.ChefFoodPanel.UpdateDishModel;
 import com.example.foodprojectapp.R;
 import com.google.firebase.database.DatabaseReference;
 

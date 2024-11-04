@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodprojectapp.CustomerFoodPanel.CustomerPendingOrders;
+import com.example.foodprojectapp.CustomerFoodPanel.CustomerModels.CustomerPendingOrders;
 import com.example.foodprojectapp.R;
 import java.util.List;
 
