@@ -100,7 +100,7 @@ public class OrderDish extends AppCompatActivity {
                         FoodQuantity.setText(Html.fromHtml(qua));
                         String ss = "<b>" + "Description: " + "</b>" + updateDishModel.getDescription();
                         FoodDescription.setText(Html.fromHtml(ss));
-                        String pri = "<b>" + "Price: " + "</b>" + updateDishModel.getPrice() + "VND";
+                        String pri = "<b>" + "Price: " + "</b>" + updateDishModel.getPrice() + " VND";
                         FoodPrice.setText(Html.fromHtml(pri));
 
                         chefdata = FirebaseDatabase.getInstance().getReference("Chef").child(ChefID);

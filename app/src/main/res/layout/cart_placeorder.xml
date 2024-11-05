@@ -95,9 +95,9 @@
                 android:id="@+id/btn_add_to_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_margin="11dp"
+                android:layout_marginLeft="11dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="Add to Cart"
+                android:text="Add"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
         </LinearLayout>
