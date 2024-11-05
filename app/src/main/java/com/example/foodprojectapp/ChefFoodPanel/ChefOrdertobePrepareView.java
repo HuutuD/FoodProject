@@ -65,6 +65,8 @@ public class ChefOrdertobePrepareView extends AppCompatActivity {
         grandtotal = findViewById(R.id.rupees);
         note = findViewById(R.id.NOTE);
         address = findViewById(R.id.ad);
+        name = findViewById(R.id.nm);
+        number = findViewById(R.id.num);
         l1 = findViewById(R.id.button1);
         Preparing = findViewById(R.id.preparing);
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
@@ -220,11 +222,11 @@ public class ChefOrdertobePrepareView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ChefWaitingOrders1 chefWaitingOrders1 = dataSnapshot.getValue(ChefWaitingOrders1.class);
-                grandtotal.setText(chefWaitingOrders1.getGrandTotalPrice() +" VND");
+                grandtotal.setText(chefWaitingOrders1.getGrandTotalPrice()+" VND");
                 note.setText(chefWaitingOrders1.getNote());
                 address.setText(chefWaitingOrders1.getAddress());
                 name.setText(chefWaitingOrders1.getName());
-                number.setText("+84" + chefWaitingOrders1.getMobileNumber());
+                number.setText("+84 " + chefWaitingOrders1.getMobileNumber());
 
             }
 
